@@ -78,6 +78,28 @@ class Give_Payumoney_API {
 		return $template;
 	}
 
+	/**
+	 * @param $payupaisa_args
+	 *
+	 * @return string
+	 */
+	static function get_hash( $payupaisa_args ) {
+		$hashSequence = "key|txnid|amount|productinfo|firstname|email|udf1|||||||||";
+
+		$hashVarsSeq = explode( '|', $hashSequence );
+		$hash_string = '';
+
+		foreach ( $hashVarsSeq as $hash_var ) {
+			$hash_string .= isset( $payupaisa_args[ $hash_var ] ) ? $payupaisa_args[ $hash_var ] : '';
+			$hash_string .= '|';
+		}
+
+		$hash_string .= self::$salt_key;
+
+		return strtolower( hash( 'sha512', $hash_string ) );
+	}
+
+
 	static function get_form() {
 		$donation_data = Give()->session->get( 'give_purchase' );
 		$donation_id   = absint( $_GET['donation'] );
@@ -108,24 +130,8 @@ class Give_Payumoney_API {
 
 		);
 
-		/**
-		 * Create hash.
-		 */
-		$hashSequence = "key|txnid|amount|productinfo|firstname|email|udf1|||||||||";
-
-		$hashVarsSeq = explode( '|', $hashSequence );
-		$hash_string = '';
-
-		foreach ( $hashVarsSeq as $hash_var ) {
-			$hash_string .= isset( $payupaisa_args[ $hash_var ] ) ? $payupaisa_args[ $hash_var ] : '';
-			$hash_string .= '|';
-		}
-
-		$hash_string .= self::$salt_key;
-		$hash = strtolower( hash( 'sha512', $hash_string ) );
-
 		// Add hash to payment params.
-		$payupaisa_args['hash'] = $hash;
+		$payupaisa_args['hash'] = self::get_hash( $payupaisa_args );
 
 		// Add service provider only for live.
 		if ( ! give_payu_is_sandbox_mode_enabled() ) {
