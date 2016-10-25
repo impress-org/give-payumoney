@@ -134,7 +134,7 @@ class Give_Payumoney_API {
 		$payupaisa_args['hash'] = self::get_hash( $payupaisa_args );
 
 		// Add service provider only for live.
-		if ( ! give_payu_is_sandbox_mode_enabled() ) {
+		if ( ! give_pum_is_sandbox_mode_enabled() ) {
 			// must be "payu_paisa"
 			$payupaisa_args['service_provider'] = 'payu_paisa';
 		}
