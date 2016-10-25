@@ -23,7 +23,7 @@ add_action( 'give_payumoney_set_donation_abandoned', 'give_payumoney_set_donatio
  * @param $form_id
  */
 function give_payu_show_frontend_notices( $form_id ){
-	if( $form_id !== absint( $_GET['form-id'] ) ) {
+	if( ! isset( $_GET['form-id'] ) || $form_id !== absint( $_GET['form-id'] ) ) {
 		return;
 	}
 	
