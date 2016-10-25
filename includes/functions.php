@@ -86,25 +86,3 @@ function give_payu_get_api_url() {
 
 	return $api_url;
 }
-
-
-/**
- * Format credit card expiry date [YYYY/MM]
- *
- * Note: Date should be in american date format [mm/yy]
- *
- * @since 1.0
- *
- * @param $date
- *
- * @return string
- */
-function give_payu_format_cc_expiry_date( $date ) {
-	// Bailout.
-	if ( ! $date ) {
-		return '';
-	}
-	$date = str_replace( '/', '/01/', $date );
-
-	return date( 'Y/m', strtotime( $date ) );
-}
