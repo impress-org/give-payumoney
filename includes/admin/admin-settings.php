@@ -54,7 +54,7 @@ class Give_Payumoney_Gateway_Settings {
 	 */
 	public function setup_hooks() {
 		$this->section_id    = 'payumoney';
-		$this->section_label = __( 'Payumoney Payments', 'give-payumoney' );
+		$this->section_label = __( 'PayUmoney Payments', 'give-payumoney' );
 
 		// Add payment gateway to payment gateways list.
 		add_filter( 'give_donation_gateways', array( $this, 'add_gateways' ) );
@@ -195,7 +195,7 @@ class Give_Payumoney_Gateway_Settings {
 					if ('refunded' == $(this).val()) {
 						$(this)
 							.closest('div')
-							.append('<p id="give-payumoney-refund"><input type="checkbox" id="give_refund_in_payumoney" name="give_refund_in_payumoney" value="1"/><label for="give_refund_in_payumoney"><?php _e( 'Refund Charge in Payumoney?', 'give-payumoney' ); ?></label></p>');
+							.append('<p id="give-payumoney-refund"><input type="checkbox" id="give_refund_in_payumoney" name="give_refund_in_payumoney" value="1"/><label for="give_refund_in_payumoney"><?php _e( 'Refund Charge in PayUmoney?', 'give-payumoney' ); ?></label></p>');
 					} else {
 						$('#give-payumoney-refund').remove();
 					}
