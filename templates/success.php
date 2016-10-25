@@ -97,7 +97,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 								give_send_to_success_page();
 								break;
 
-							case 'failure': ?>
+							case 'failure':
+								$donation->update_status( 'revoked' );
+								wp_clear_scheduled_hook( 'give_payumoney_set_donation_abandoned' );
+								?>
 								<form action="<?php echo '?form-id=' . absint( $_POST['udf1'] ) . '&payment_mode = payumoney'; ?>" name="payuFailure" method="post">
 									<input type="hidden" name="payu-error-message" value="<?php echo $_POST['error_Message']; ?>">
 								</form>
