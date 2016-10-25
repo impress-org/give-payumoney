@@ -45,11 +45,11 @@ class Give_Payumoney_API {
 	 * @return mixed
 	 */
 	public function setup_params() {
-		$merchant = give_payu_get_merchant_credentials();
+		$merchant = give_pum_get_merchant_credentials();
 
 		self::$merchant_key = $merchant['merchant_key'];
 		self::$salt_key     = $merchant['salt_key'];
-		self::$api_url      = give_payu_get_api_url();
+		self::$api_url      = give_pum_get_api_url();
 
 
 		return self::$instance;

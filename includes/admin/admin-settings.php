@@ -84,7 +84,7 @@ class Give_Payumoney_Gateway_Settings {
 	public function add_gateways( $gateways ) {
 		$gateways[ $this->section_id ] = array(
 			'admin_label'    => $this->section_label,
-			'checkout_label' => give_payu_get_payment_method_label(),
+			'checkout_label' => give_pum_get_payment_method_label(),
 		);
 
 		return $gateways;

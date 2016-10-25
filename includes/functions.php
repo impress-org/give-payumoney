@@ -5,13 +5,13 @@
  * @since 1.0
  * @return bool
  */
-function give_is_payumoney_active() {
+function give_is_pum_active() {
 	$give_settings = give_get_settings();
 	$is_active     = false;
 
 	if (
-		array_key_exists( 'payuoney', $give_settings['gateways'] )
-		&& ( 1 == $give_settings['gateways']['payuoney'] )
+		array_key_exists( 'payumoney', $give_settings['gateways'] )
+		&& ( 1 == $give_settings['gateways']['payumoney'] )
 	) {
 		$is_active = true;
 	}
@@ -26,7 +26,7 @@ function give_is_payumoney_active() {
  * @since 1.0
  * @return string
  */
-function give_payu_get_payment_method_label() {
+function give_pum_get_payment_method_label() {
 	$give_settings = give_get_settings();
 
 	return ( empty( $give_settings['payumoney_payment_method_label'] ) ? __( 'Credit Card', 'give-payuoney' ) : $give_settings['payumoney_payment_method_label'] );
@@ -39,7 +39,7 @@ function give_payu_get_payment_method_label() {
  * @since 1.0
  * @return bool
  */
-function give_payu_is_sandbox_mode_enabled() {
+function give_pum_is_sandbox_mode_enabled() {
 	$give_settings = give_get_settings();
 
 	return give_is_setting_enabled( $give_settings['payumoney_sandbox_testing'] );
@@ -52,14 +52,14 @@ function give_payu_is_sandbox_mode_enabled() {
  * @since 1.0
  * @return array
  */
-function give_payu_get_merchant_credentials() {
+function give_pum_get_merchant_credentials() {
 	$give_settings = give_get_settings();
 	$credentials   = array(
 		'merchant_key' => $give_settings['payumoney_sandbox_merchant_key'],
 		'salt_key'     => $give_settings['payumoney_sandbox_salt_key'],
 	);
 
-	if ( ! give_payu_is_sandbox_mode_enabled() ) {
+	if ( ! give_pum_is_sandbox_mode_enabled() ) {
 		$credentials = array(
 			'merchant_key' => $give_settings['payumoney_sandbox_merchant_key'],
 			'salt_key'     => $give_settings['payumoney_sandbox_salt_key'],
@@ -77,10 +77,10 @@ function give_payu_get_merchant_credentials() {
  * @since 1.0
  * @return array
  */
-function give_payu_get_api_url() {
+function give_pum_get_api_url() {
 	$api_url = 'https://test.payu.in/_payment';
 
-	if ( ! give_payu_is_sandbox_mode_enabled() ) {
+	if ( ! give_pum_is_sandbox_mode_enabled() ) {
 		$api_urls = 'https://secure.payu.in/_payment';
 	}
 
