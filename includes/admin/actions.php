@@ -5,13 +5,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Check if iATS dependency enable or not.
+ * Check if PayUmoney dependency enable or not.
  *
  * @since 1.0
  */
-function give_iats_check_dependancies() {
+function give_payumoney_check_dependancies() {
 	// Bailout
-	if ( ! give_is_iats_active() ) {
+	if ( ! give_is_pum_active() ) {
 		return;
 	}
 
@@ -21,22 +21,16 @@ function give_iats_check_dependancies() {
 
 
 	// Check dependencies.
-	if ( ! in_array( $give_settings['currency'], array( 'USD', 'CAD', 'GBA', 'EUR' ) ) ) {
+	if ( ! give_pum_is_sandbox_mode_enabled() && ( empty( $give_settings['payumoney_live_merchant_key'] ) || empty( $give_settings['payumoney_live_salt_key'] ) ) ) {
 		$reset_settings = true;
 
 		// Show notice.
-		add_filter( 'give-settings_update_notices', 'give_iats_disable_by_currency' );
-
-	} elseif ( ! give_iats_is_sandbox_mode_enabled() && ( empty( $give_settings['iats_live_agent_code'] ) || empty( $give_settings['iats_live_agent_password'] ) ) ) {
+		add_filter( 'give-settings_update_notices', 'give_pum_disable_by_agent_credentials' );
+	} elseif ( give_pum_is_sandbox_mode_enabled() && ( empty( $give_settings['payumoney_sandbox_merchant_key'] ) || empty( $give_settings['payumoney_sandbox_salt_key'] ) ) ) {
 		$reset_settings = true;
 
 		// Show notice.
-		add_filter( 'give-settings_update_notices', 'give_iats_disable_by_agent_credentials' );
-	} elseif ( give_iats_is_sandbox_mode_enabled() && ( empty( $give_settings['iats_sandbox_agent_code'] ) || empty( $give_settings['iats_sandbox_agent_password'] ) ) ) {
-		$reset_settings = true;
-
-		// Show notice.
-		add_filter( 'give-settings_update_notices', 'give_iats_disable_by_agent_credentials' );
+		add_filter( 'give-settings_update_notices', 'give_pum_disable_by_agent_credentials' );
 	}
 
 	// Bailout.
@@ -45,37 +39,26 @@ function give_iats_check_dependancies() {
 	}
 
 	// Deactivate iats payment gateways: It has some currency dependency.
-	unset( $give_settings['gateways']['iatspayments'] );
+	unset( $give_settings['gateways']['payumoney'] );
 
 	// Update settings.
 	update_option( 'give_settings', $give_settings );
+
+	error_log( print_r(  'demo', true ) . "\n", 3, WP_CONTENT_DIR . '/debug_new.log' );
 }
 
-add_action( 'give-settings_saved', 'give_iats_check_dependancies' );
+add_action( 'give-settings_saved', 'give_payumoney_check_dependancies' );
 
 
 /**
- * Add message when iATS disable by currency.
+ * Add message when PayUmoney disable by agent credentials.
  *
  * @param array $messages
  *
  * @return mixed
  */
-function give_iats_disable_by_currency( $messages ) {
-	$messages['iats-disable'] = esc_html__( 'iATS payment gateway disabled automatically because you do not have required currency ( USD, CAD, GBA, EUR ).', 'give-iatspayments' );
-
-	return $messages;
-}
-
-/**
- * Add message when iATS disable by agent credentials.
- *
- * @param array $messages
- *
- * @return mixed
- */
-function give_iats_disable_by_agent_credentials( $messages ) {
-	$messages['iats-disable'] = sprintf( __( 'iATS payment gateway disabled automatically because <a href="%s">agent credentials</a> is not correct.', 'give-iatspayments' ), admin_url( 'edit.php?post_type=give_forms&page=give-settings&tab=gateways&section=iatspayments' ) );
+function give_pum_disable_by_agent_credentials( $messages ) {
+	$messages['iats-disable'] = sprintf( __( 'PayUmoney payment gateway disabled automatically because <a href="%s">merchant credentials</a> is not correct.', 'give-payumoney' ), admin_url( 'edit.php?post_type=give_forms&page=give-settings&tab=gateways&section=payumoney' ) );
 
 	return $messages;
 }

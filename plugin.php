@@ -118,28 +118,11 @@ final class Give_Payumoney_Gateway {
 
 		if ( is_admin() ) {
 			// Add actions.
-			// require_once GIVE_PAYU_DIR . 'includes/admin/actions.php';
+			require_once GIVE_PAYU_DIR . 'includes/admin/actions.php';
 		}
 
 		return self::$instance;
 	}
-
-
-	/**
-	 * Setup payment gateway.
-	 *
-	 * @since  1.0
-	 * @access public
-	 * @see    http://developers.payulatam.com/en/sdk/
-	 * @return Give_Payumoney_Gateway
-	 */
-	public function setup_payment_gateway() {
-		$merchant = give_payu_get_merchant_credentials();
-		$api_urls = give_payu_get_api_url();
-
-		return self::$instance;
-	}
-
 
 	/**
 	 * Setup hooks.
@@ -176,8 +159,7 @@ function give_payu_plugin_init() {
 		Give_Payumoney_Gateway::get_instance()
 		                      ->setup_constants()
 		                      ->load_files()
-		                      ->setup_hooks()
-		                      ->setup_payment_gateway();
+		                      ->setup_hooks();
 
 	}
 }
