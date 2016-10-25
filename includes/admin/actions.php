@@ -43,8 +43,6 @@ function give_payumoney_check_dependancies() {
 
 	// Update settings.
 	update_option( 'give_settings', $give_settings );
-
-	error_log( print_r(  'demo', true ) . "\n", 3, WP_CONTENT_DIR . '/debug_new.log' );
 }
 
 add_action( 'give-settings_saved', 'give_payumoney_check_dependancies' );
