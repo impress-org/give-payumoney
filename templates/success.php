@@ -80,10 +80,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 			if ( ! empty( $donation_id ) ) {
 				try {
-					$donation        = new Give_Payment( $donation_id );
-					$hash            = $_REQUEST['hash'];
-					$status          = $_REQUEST['status'];
-					$checkhash       = Give_Payumoney_API::get_hash( $_REQUEST );
+					$donation  = new Give_Payment( $donation_id );
+					$hash      = $_REQUEST['hash'];
+					$status    = $_REQUEST['status'];
+					$checkhash = Give_Payumoney_API::get_hash( $_REQUEST );
 
 					if ( $donation->status !== 'completed' ) {
 						// Process each payment status.
