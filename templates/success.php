@@ -91,6 +91,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 							case 'success':
 								$donation = new Give_Payment( absint( $_POST['udf1'] ) );
 								$donation->update_status( 'completed' );
+								give_set_payment_transaction_id( $donation_id, $_REQUEST['mihpayid'] );
+								update_post_meta( $donation_id, 'payumoney_donation_response', $_REQUEST );
+
 								give_send_to_success_page();
 								break;
 
