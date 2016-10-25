@@ -54,6 +54,7 @@ function give_process_payumoney_payment( $donation_data ) {
 
 	// Send to success page.
 	wp_redirect( home_url( '/?process_payu_payment=processing&donation=' . $payment ) );
+	exit();
 }
 
 add_action( 'give_gateway_payumoney', 'give_process_payumoney_payment' );
