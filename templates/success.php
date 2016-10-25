@@ -84,7 +84,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 					$hash            = $_REQUEST['hash'];
 					$status          = $_REQUEST['status'];
 					$checkhash       = Give_Payumoney_API::get_hash( $_REQUEST );
-					$transauthorised = false;
 
 					if ( $donation->status !== 'completed' ) {
 						// Process each payment status.
