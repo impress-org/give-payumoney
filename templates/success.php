@@ -14,6 +14,67 @@ if ( ! defined( 'ABSPATH' ) ) {
 	</head>
 	<body>
 		<?php
+		/**
+		 * Response array
+		 *
+		 * Array
+		 *  (
+		 *      [mihpayid] => 403993715515126963
+		 *      [mode] => CC
+		 *      [status] => success
+		 *      [unmappedstatus] => captured
+		 *      [key] => gtKFFx
+		 *      [txnid] => 2433_16102534
+		 *      [amount] => 14.00
+		 *      [cardCategory] => international
+		 *      [discount] => 0.00
+		 *      [net_amount_debit] => 14
+		 *      [addedon] => 2016-10-25 13:22:35
+		 *      [productinfo] => This payment is donation against  2433
+		 *      [firstname] => Ravinder
+		 *      [lastname] => Kumar
+		 *      [address1] => street 1  Ujina
+		 *      [address2] => street 2
+		 *      [city] => gurgaon
+		 *      [state] => HR
+		 *      [country] => IN
+		 *      [zipcode] => 122001
+		 *      [email] => ravinder25@gmail.com
+		 *      [phone] =>
+		 *      [udf1] => 2433
+		 *      [udf2] =>
+		 *      [udf3] =>
+		 *      [udf4] =>
+		 *      [udf5] =>
+		 *      [udf6] =>
+		 *      [udf7] =>
+		 *      [udf8] =>
+		 *      [udf9] =>
+		 *      [udf10] =>
+		 *      [hash] => 964fbafecf32c696a3465828a21b8985b53a55f9677c77f82bb53967d8bb9bb2b41c7baec5b38ca1c9a125d085c8aaad26919c5bcce75d668b342d1633ce402b
+		 *      [field1] => 629917698996
+		 *      [field2] => 999999
+		 *      [field3] => 7415811221362990
+		 *      [field4] => 7415811221362990
+		 *      [field5] =>
+		 *      [field6] =>
+		 *      [field7] =>
+		 *      [field8] =>
+		 *      [field9] => SUCCESS
+		 *      [payment_source] => payu
+		 *      [PG_TYPE] => HDFCPG
+		 *      [bank_ref_num] => 7415811221362990
+		 *      [bankcode] => CC
+		 *      [error] => E000
+		 *      [error_Message] => No Error
+		 *      [name_on_card] => Demo
+		 *      [cardnum] => 400002XXXXXX2445
+		 *      [cardhash] => This field is no longer supported in postback params.
+		 *      [issuing_bank] => UNKNOWN
+		 *      [card_type] => VISA
+		 * )
+		 *
+		 */
 		if ( isset( $_REQUEST['txnid'] ) && isset( $_REQUEST['mihpayid'] ) ) {
 			$donation_id = $_REQUEST['udf1'];
 
