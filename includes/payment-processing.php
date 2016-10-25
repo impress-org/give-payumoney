@@ -26,7 +26,7 @@ function give_process_payumoney_payment( $donation_data ) {
 		'currency'        => give_get_currency(),
 		'user_info'       => $donation_data['user_info'],
 		'status'          => 'pending',
-		'gateway'         => 'payumoneypayments',
+		'gateway'         => 'payumoney',
 	);
 
 	// Record the pending payment.
