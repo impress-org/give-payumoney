@@ -124,34 +124,3 @@ function give_payumoney_donation_refund( $do_change, $donation_id, $new_status, 
 }
 
 add_filter( 'give_should_update_payment_status', 'give_payumoney_donation_refund', 10, 4 );
-
-
-/**
- * Show refund id.
- *
- * @since 1.0
- *
- * @param $donation_id
- */
-function give_payumoney_show_refund_transaction_id( $donation_id ) {
-	/* @var Give_Payment $donation Give_Payment object. */
-	$donation = new Give_Payment( $donation_id );
-
-	// Bailout.
-	if ( 'refunded' !== $donation->status || 'payumoneypayments' !== $donation->gateway ) {
-		return;
-	}
-
-	if ( $refund_id = give_get_payment_meta( $donation_id, '_give_payment_refund_id', true ) ):
-		?>
-		<div class="give-admin-box-inside">
-			<p>
-				<strong><?php esc_html_e( 'Refund ID:', 'give' ); ?></strong>&nbsp;
-				<?php echo $refund_id; ?>
-			</p>
-		</div>
-		<?php
-	endif;
-}
-
-add_action( 'give_view_order_details_payment_meta_after', 'give_payumoney_show_refund_transaction_id' );

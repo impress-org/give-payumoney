@@ -68,7 +68,7 @@ class Give_Payumoney_Gateway_Settings {
 			add_filter( 'give_get_settings_gateways', array( $this, 'add_settings' ) );
 
 			// Add setting to donation edit screen.
-			add_action( 'give_view_order_details_before', array( $this, 'give_payumoney_admin_payment_js' ), 100 );
+			// add_action( 'give_view_order_details_before', array( $this, 'give_payumoney_admin_payment_js' ), 100 );
 		}
 	}
 
