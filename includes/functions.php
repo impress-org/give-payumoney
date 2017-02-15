@@ -5,7 +5,7 @@
  * @since 1.0
  * @return bool
  */
-function give_is_pum_active() {
+function give_is_payu_active() {
 	$give_settings = give_get_settings();
 	$is_active     = false;
 
@@ -26,10 +26,8 @@ function give_is_pum_active() {
  * @since 1.0
  * @return string
  */
-function give_pum_get_payment_method_label() {
-	$give_settings = give_get_settings();
-
-	return ( empty( $give_settings['payumoney_payment_method_label'] ) ? __( 'Credit Card', 'give-payuoney' ) : $give_settings['payumoney_payment_method_label'] );
+function give_payu_get_payment_method_label() {
+	return ( give_get_option( 'payumoney_payment_method_label', false ) ? __( 'Credit Card', 'give-payuoney' ) : give_get_option( 'payumoney_payment_method_label', '' ) );
 }
 
 
@@ -39,10 +37,8 @@ function give_pum_get_payment_method_label() {
  * @since 1.0
  * @return bool
  */
-function give_pum_is_sandbox_mode_enabled() {
-	$give_settings = give_get_settings();
-
-	return give_is_setting_enabled( $give_settings['payumoney_sandbox_testing'] );
+function give_payu_is_sandbox_mode_enabled() {
+	return give_is_setting_enabled( give_get_option( 'payumoney_sandbox_testing' ) );
 }
 
 
@@ -52,17 +48,16 @@ function give_pum_is_sandbox_mode_enabled() {
  * @since 1.0
  * @return array
  */
-function give_pum_get_merchant_credentials() {
-	$give_settings = give_get_settings();
-	$credentials   = array(
-		'merchant_key' => $give_settings['payumoney_sandbox_merchant_key'],
-		'salt_key'     => $give_settings['payumoney_sandbox_salt_key'],
+function give_payu_get_merchant_credentials() {
+	$credentials = array(
+		'merchant_key' => give_get_option( 'payumoney_sandbox_merchant_key', '' ),
+		'salt_key'     => give_get_option( 'payumoney_sandbox_salt_key', '' ),
 	);
 
-	if ( ! give_pum_is_sandbox_mode_enabled() ) {
+	if ( ! give_payu_is_sandbox_mode_enabled() ) {
 		$credentials = array(
-			'merchant_key' => $give_settings['payumoney_sandbox_merchant_key'],
-			'salt_key'     => $give_settings['payumoney_sandbox_salt_key'],
+			'merchant_key' => give_get_option( 'payumoney_sandbox_merchant_key', '' ),
+			'salt_key'     => give_get_option( 'payumoney_sandbox_salt_key', '' ),
 		);
 	}
 
@@ -75,12 +70,12 @@ function give_pum_get_merchant_credentials() {
  * Get api urls.
  *
  * @since 1.0
- * @return array
+ * @return string
  */
-function give_pum_get_api_url() {
+function give_payu_get_api_url() {
 	$api_url = 'https://test.payu.in/_payment';
 
-	if ( ! give_pum_is_sandbox_mode_enabled() ) {
+	if ( ! give_payu_is_sandbox_mode_enabled() ) {
 		$api_urls = 'https://secure.payu.in/_payment';
 	}
 

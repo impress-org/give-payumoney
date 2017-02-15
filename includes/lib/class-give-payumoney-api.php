@@ -42,19 +42,28 @@ class Give_Payumoney_API {
 
 	/**
 	 * Setup params.
+	 *
+	 * @since  1.0
+	 * @access public
 	 * @return mixed
 	 */
 	public function setup_params() {
-		$merchant = give_pum_get_merchant_credentials();
+		$merchant = give_payu_get_merchant_credentials();
 
 		self::$merchant_key = $merchant['merchant_key'];
 		self::$salt_key     = $merchant['salt_key'];
-		self::$api_url      = give_pum_get_api_url();
-
+		self::$api_url      = give_payu_get_api_url();
 
 		return self::$instance;
 	}
 
+	/**
+	 * Setup hooks.
+	 *
+	 * @since  1.0
+	 * @access public
+	 * @return mixed
+	 */
 	public function setup_hooks() {
 		add_filter( 'template_include', array( $this, 'show_payu_form_template' ) );
 		add_filter( 'template_include', array( $this, 'show_payu_payment_success_template' ) );
@@ -62,6 +71,16 @@ class Give_Payumoney_API {
 		return self::$instance;
 	}
 
+	/**
+	 * Show payumoney form template.
+	 *
+	 * @since  1.0
+	 * @access public
+	 *
+	 * @param $template
+	 *
+	 * @return string
+	 */
 	public function show_payu_form_template( $template ) {
 		if ( isset( $_GET['process_payu_payment'] ) && 'processing' === $_GET['process_payu_payment'] ) {
 			$template = GIVE_PAYU_DIR . 'templates/form.php';
@@ -70,6 +89,16 @@ class Give_Payumoney_API {
 		return $template;
 	}
 
+	/**
+	 * Show success template
+	 *
+	 * @since  1.0
+	 * @access public
+	 *
+	 * @param $template
+	 *
+	 * @return string
+	 */
 	public function show_payu_payment_success_template( $template ) {
 		if ( isset( $_GET['process_payu_payment'] ) && 'success' === $_GET['process_payu_payment'] ) {
 			$template = GIVE_PAYU_DIR . 'templates/success.php';
@@ -84,7 +113,7 @@ class Give_Payumoney_API {
 	 * @return string
 	 */
 	static function get_hash( $payupaisa_args ) {
-		$hashSequence = "key|txnid|amount|productinfo|firstname|email|udf1|||||||||";
+		$hashSequence = 'key|txnid|amount|productinfo|firstname|email|udf1|||||||||';
 
 		$hashVarsSeq = explode( '|', $hashSequence );
 		$hash_string = '';
@@ -99,16 +128,22 @@ class Give_Payumoney_API {
 		return strtolower( hash( 'sha512', $hash_string ) );
 	}
 
-
-	static function get_form() {
+	/**
+	 * Get form
+	 *
+	 * @since  1.0
+	 * @access public
+	 * @return string
+	 */
+	public static function get_form() {
 		$donation_data = Give()->session->get( 'give_purchase' );
 		$donation_id   = absint( $_GET['donation'] );
 
-		$form_url = trailingslashit( explode( '?', $donation_data['post_data']['give-current-url'] )[0] );
+		$form_url = trailingslashit( current( explode( '?', $donation_data['post_data']['give-current-url'] ) ) );
 
 		$payupaisa_args = array(
 			'key'         => self::$merchant_key,
-			'txnid'       => "{$donation_id}_" . date( "ymds" ),
+			'txnid'       => "{$donation_id}_" . date( 'ymds' ),
 			'amount'      => $donation_data['post_data']['give-amount'],
 			'firstname'   => $donation_data['post_data']['give_first'],
 			'email'       => $donation_data['post_data']['give_email'],
@@ -127,25 +162,22 @@ class Give_Payumoney_API {
 
 			// 'pg'               => 'NB',
 			// 'phone'            => '00000000',
-
 		);
 
 		// Add hash to payment params.
 		$payupaisa_args['hash'] = self::get_hash( $payupaisa_args );
 
 		// Add service provider only for live.
-		if ( ! give_pum_is_sandbox_mode_enabled() ) {
+		if ( ! give_payu_is_sandbox_mode_enabled() ) {
 			// must be "payu_paisa"
 			$payupaisa_args['service_provider'] = 'payu_paisa';
 		}
-
 
 		// Create input hidden fields.
 		$payupaisa_args_array = array();
 		foreach ( $payupaisa_args as $key => $value ) {
 			$payupaisa_args_array[] = '<input type="hidden" name="' . $key . '" value="' . $value . '"/>';
 		}
-
 
 		ob_start();
 		?>

@@ -1,42 +1,14 @@
 <?php
 /**
  * Plugin Name: Give Payumoney
- * Plugin URI: http://givewp.com
- * Description: The most robust, flexible, and intuitive way to accept donations on WordPress with Give plugin by payumoney payment gateway.
+ * Plugin URI: https://github.com/WordImpress/payumoney
+ * Description: Accept donations with payumoney payment gateway with Give.
  * Author: WordImpress
  * Author URI: https://wordimpress.com
  * Version: 1.0
  * Text Domain: give-payumoney
  * Domain Path: /languages
- * GitHub Plugin URI:
- *
- * Give payumoney is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * any later version.
- *
- * Give payumoney is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with Give payumoney. If not, see <https://www.gnu.org/licenses/>.
- *
- * A Tribute to Open Source:
- *
- * "Open source software is software that can be freely used, changed, and shared (in modified or unmodified form) by anyone. Open
- * source software is made by many people, and distributed under licenses that comply with the Open Source Definition."
- *
- * -- The Open Source Initiative
- *
- * Give payumoney is a tribute to the spirit and philosophy of Open Source. We at WordImpress gladly embrace the Open Source philosophy both
- * in how Give payumoney itself was developed, and how we hope to see others build more from our code base.
- *
- * Give payumoney would not have been possible without the tireless efforts of WordPress and the surrounding Open Source projects and their talented developers. Thank you all for your contribution to WordPress.
- *
- * - The WordImpress Team
- *
+ * GitHub Plugin URI: https://github.com/WordImpress/payumoney
  */
 
 
@@ -87,8 +59,12 @@ final class Give_Payumoney_Gateway {
 	 * @return Give_Payumoney_Gateway
 	 */
 	public function setup_constants() {
-		define( 'GIVE_PAYU_DIR', trailingslashit( plugin_dir_path( __FILE__ ) ) );
-		define( 'GIVE_PAYU_URL', trailingslashit( plugins_url( '', __FILE__ ) ) );
+		// Global Params.
+		define( 'GIVE_PAYU_VERSION', 1.0 );
+		define( 'GIVE_PAYU_BASENAME', plugin_basename( __FILE__ ) );
+		define( 'GIVE_PAYU_URL', plugins_url( '/', __FILE__ ) );
+		define( 'GIVE_PAYU_DIR', plugin_dir_path( __FILE__ ) );
+		define( 'GIVE_PAYU_MIN_GIVE_VER', 1.8 );
 
 		return self::$instance;
 	}
@@ -150,17 +126,36 @@ final class Give_Payumoney_Gateway {
 			wp_enqueue_script( 'payumoney-admin-settings', GIVE_PAYU_URL . 'assets/js/admin/admin-settings.js', array( 'jquery' ) );
 		}
 	}
+
+	/**
+	 * Check if plugin dependencies satisfied or not
+	 *
+	 * @since 1.0
+	 * @access public
+	 * @return bool
+	 */
+	public function is_plugin_dependency_satisfied() {
+		return ( -1 !== version_compare( GIVE_VERSION, GIVE_PAYU_MIN_GIVE_VER ) );
+	}
 }
 
 // Initiate plugin.
 function give_payu_plugin_init() {
-	if( class_exists( 'Give' ) ) {
+	// Get instance.
+	$give_payu = Give_Payumoney_Gateway::get_instance();
 
-		Give_Payumoney_Gateway::get_instance()
-		                      ->setup_constants()
-		                      ->load_files()
-		                      ->setup_hooks();
+	// Load constants.
+	$give_payu->setup_constants();
 
+	// Process plugin activation.
+	require_once GIVE_PAYU_DIR . 'includes/admin/plugin-activation.php';
+
+	if (
+		class_exists( 'Give' )
+		&& $give_payu->is_plugin_dependency_satisfied()
+	) {
+		$give_payu->load_files()->setup_hooks();
 	}
 }
+
 add_action( 'plugins_loaded', 'give_payu_plugin_init' );

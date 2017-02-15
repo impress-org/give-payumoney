@@ -8,7 +8,9 @@
  */
 function give_process_payumoney_payment( $donation_data ) {
 	if ( ! wp_verify_nonce( $donation_data['gateway_nonce'], 'give-gateway' ) ) {
-		wp_die( esc_html__( 'Nonce verification has failed.', 'give-payumoney' ), esc_html__( 'Error', 'give' ), array( 'response' => 403 ) );
+		wp_die( esc_html__( 'Nonce verification has failed.', 'give-payumoney' ), esc_html__( 'Error', 'give' ), array(
+			'response' => 403,
+		) );
 	}
 
 	$form_id  = intval( $donation_data['post_data']['give-form-id'] );
@@ -58,69 +60,3 @@ function give_process_payumoney_payment( $donation_data ) {
 }
 
 add_action( 'give_gateway_payumoney', 'give_process_payumoney_payment' );
-
-
-/**
- * Process refund.
- *
- * @since 1.0
- *
- * @param bool   $do_change
- * @param int    $donation_id
- * @param string $new_status
- * @param string $old_status
- *
- * @return bool
- */
-function give_payumoney_donation_refund( $do_change, $donation_id, $new_status, $old_status ) {
-	$donation = new Give_Payment( $donation_id );
-
-	// Bailout.
-	if ( 'refunded' !== $new_status || 'payumoneypayments' !== $donation->gateway || empty( $_POST['give_refund_in_payumoney'] ) ) {
-		return $do_change;
-	}
-
-	// Get agent credentials.
-	$agent_credential = give_payumoney_get_agent_credentials();
-	$agentCode        = $agent_credential['code'];            // Assigned by iATS
-	$password         = $agent_credential['password'];        // Assigned by iATS
-
-	// Process link.
-	$iATS_PL = new iATS\ProcessLink( $agentCode, $password, give_payumoney_get_server_name() );
-
-	$request = array(
-		'transactionId' => give_get_payment_transaction_id( $donation->ID ),
-		'total'         => - $donation->total,
-		'comment'       => sprintf( __( "Refund for donation %d", 'give-payumoney' ), $donation->ID ),
-	);
-
-	// Make the API call using the ProcessLink service.
-	$response = $iATS_PL->processCreditCardRefundWithTransactionId( $request );
-
-	// Verify successful call
-	if ( 'OK' != substr( trim( $response['AUTHORIZATIONRESULT'] ), 0, 2 ) ) {
-		$url_data = parse_url( $_SERVER['REQUEST_URI'] );
-
-		// Build query
-		$url_query = array_merge(
-			wp_parse_args( $url_data['query'] ),
-			array( 'give-payumoney-message' => $response['code'] )
-		);
-
-		$url = home_url( "/{$url_data['path']}?" . http_build_query( $url_query ) );
-
-		// Redirect.
-		wp_safe_redirect( $url );
-		exit();
-	}
-
-	// Add payumoney payment response meta.
-	update_post_meta( $donation->ID, 'payumoney_refund_response', $response );
-
-	// Add refund transaction id.
-	give_update_payment_meta( $donation->ID, '_give_payment_refund_id', $response['TRANSACTIONID'] );
-
-	return true;
-}
-
-add_filter( 'give_should_update_payment_status', 'give_payumoney_donation_refund', 10, 4 );

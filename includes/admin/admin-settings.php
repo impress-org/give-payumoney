@@ -54,10 +54,10 @@ class Give_Payumoney_Gateway_Settings {
 	 */
 	public function setup_hooks() {
 		$this->section_id    = 'payumoney';
-		$this->section_label = __( 'PayUmoney Payments', 'give-payumoney' );
+		$this->section_label = __( 'PayUmoney', 'give-payumoney' );
 
 		// Add payment gateway to payment gateways list.
-		add_filter( 'give_donation_gateways', array( $this, 'add_gateways' ) );
+		add_filter( 'give_payment_gateways', array( $this, 'add_gateways' ) );
 
 		if ( is_admin() ) {
 
@@ -66,9 +66,6 @@ class Give_Payumoney_Gateway_Settings {
 
 			// Add section settings.
 			add_filter( 'give_get_settings_gateways', array( $this, 'add_settings' ) );
-
-			// Add setting to donation edit screen.
-			// add_action( 'give_view_order_details_before', array( $this, 'give_payumoney_admin_payment_js' ), 100 );
 		}
 	}
 
@@ -84,7 +81,7 @@ class Give_Payumoney_Gateway_Settings {
 	public function add_gateways( $gateways ) {
 		$gateways[ $this->section_id ] = array(
 			'admin_label'    => $this->section_label,
-			'checkout_label' => give_pum_get_payment_method_label(),
+			'checkout_label' => give_payu_get_payment_method_label(),
 		);
 
 		return $gateways;
@@ -170,41 +167,9 @@ class Give_Payumoney_Gateway_Settings {
 					'type' => 'sectionend',
 				),
 			);
-		}
+		}// End if().
 
 		return $settings;
-	}
-
-	/**
-	 * Load Transaction-specific admin javascript
-	 *
-	 * @since 1.0
-	 *
-	 * @param int $payment_id
-	 */
-	function give_payumoney_admin_payment_js( $payment_id = 0 ) {
-		// Bailout.
-		if ( 'payumoney' !== give_get_payment_gateway( $payment_id ) ) {
-			return;
-		}
-		?>
-		<script type="text/javascript">
-			jQuery(document).ready(function ($) {
-				$('select[name=give-payment-status]').change(function () {
-
-					if ('refunded' == $(this).val()) {
-						$(this)
-							.closest('div')
-							.append('<p id="give-payumoney-refund"><input type="checkbox" id="give_refund_in_payumoney" name="give_refund_in_payumoney" value="1"/><label for="give_refund_in_payumoney"><?php _e( 'Refund Charge in PayUmoney?', 'give-payumoney' ); ?></label></p>');
-					} else {
-						$('#give-payumoney-refund').remove();
-					}
-
-				});
-			});
-		</script>
-		<?php
-
 	}
 }
 

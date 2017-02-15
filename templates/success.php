@@ -73,7 +73,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 		 *      [issuing_bank] => UNKNOWN
 		 *      [card_type] => VISA
 		 * )
-		 *
 		 */
 		if ( isset( $_REQUEST['txnid'] ) && isset( $_REQUEST['mihpayid'] ) ) {
 			$donation_id = $_REQUEST['udf1'];
@@ -114,9 +113,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 					}
 				} catch ( Exception $e ) {
 					error_log( print_r( $e->getMessage(), true ) . "\n", 3, WP_CONTENT_DIR . '/debug.log' );
-				}
-			}
-		}
+				}// End try().
+			}// End if().
+		}// End if().
 
 		// Default redirect to home page.
 		wp_redirect( home_url( '/' ) );
