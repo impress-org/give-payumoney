@@ -135,7 +135,7 @@ class Give_Payumoney_Gateway_Settings {
 					'title'   => esc_html__( 'Payment method label', 'give-payumoney' ),
 					'id'      => 'payumoney_payment_method_label',
 					'type'    => 'text',
-					'default' => esc_html__( 'Credit Card', 'give-payumoney' ),
+					'default' => give_payu_get_payment_method_label(),
 					'desc'    => __( 'Payment method label will be appear on frontend.', 'give-payumoney' ),
 				),
 				array(
