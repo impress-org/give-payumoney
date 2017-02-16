@@ -75,7 +75,7 @@ function give_payu_get_merchant_credentials() {
 function give_payu_get_api_url() {
 	$api_url = 'https://test.payu.in/_payment';
 
-	if ( ! give_payu_is_sandbox_mode_enabled() ) {
+	if ( ! give_payu_is_sandbox_mode_enabled() && ! give_is_test_mode() ) {
 		$api_urls = 'https://secure.payu.in/_payment';
 	}
 
