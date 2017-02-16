@@ -113,7 +113,7 @@ class Give_Payumoney_API {
 	 * @return string
 	 */
 	static function get_hash( $payupaisa_args ) {
-		$hashSequence = 'key|txnid|amount|productinfo|firstname|email|udf1|||||||||';
+		$hashSequence = 'key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10';
 
 		$hashVarsSeq = explode( '|', $hashSequence );
 		$hash_string = '';
@@ -142,34 +142,37 @@ class Give_Payumoney_API {
 		$form_url = trailingslashit( current( explode( '?', $donation_data['post_data']['give-current-url'] ) ) );
 
 		$payupaisa_args = array(
-			'key'         => self::$merchant_key,
-			'txnid'       => "{$donation_id}_" . date( 'ymds' ),
-			'amount'      => $donation_data['post_data']['give-amount'],
-			'firstname'   => $donation_data['post_data']['give_first'],
-			'email'       => $donation_data['post_data']['give_email'],
-			'productinfo' => "This payment is donation against #{$donation_id}",
-			'surl'        => $form_url . '?process_payu_payment=success',
-			'furl'        => $form_url . "?form-id={$donation_data['post_data']['give-form-id']}&payment_mode=payumoney&process_payu_payment=failed",
-			'lastname'    => $donation_data['post_data']['give_last'],
-			'address1'    => $donation_data['post_data']['card_address'],
-			'address2'    => $donation_data['post_data']['card_address_2'],
-			'city'        => $donation_data['post_data']['card_city'],
-			'state'       => $donation_data['post_data']['card_state'],
-			'country'     => $donation_data['post_data']['billing_country'],
-			'zipcode'     => $donation_data['post_data']['card_zip'],
-			'curl'        => $form_url . '?success_payu_payment=1',
-			'udf1'        => $donation_id,
-			'comment'     => 'givewp',
+			'key'              => self::$merchant_key,
+			'txnid'            => "{$donation_id}_" . date( 'ymds' ),
+			'amount'           => $donation_data['post_data']['give-amount'],
+			'firstname'        => $donation_data['post_data']['give_first'],
+			'email'            => $donation_data['post_data']['give_email'],
+			'productinfo'      => "This payment is donation against #{$donation_id}",
+			'surl'             => $form_url . '?process_payu_payment=success',
+			'furl'             => $form_url . "?form-id={$donation_data['post_data']['give-form-id']}&payment_mode=payumoney&process_payu_payment=failed",
+			'lastname'         => $donation_data['post_data']['give_last'],
+			'address1'         => $donation_data['post_data']['card_address'],
+			'address2'         => $donation_data['post_data']['card_address_2'],
+			'city'             => $donation_data['post_data']['card_city'],
+			'state'            => $donation_data['post_data']['card_state'],
+			'country'          => $donation_data['post_data']['billing_country'],
+			'zipcode'          => $donation_data['post_data']['card_zip'],
+			'curl'             => $form_url . '?success_payu_payment=1',
+			'udf1'             => $donation_id,
+			'comment'          => 'givewp',
+			'service_provider' => 'payu_paisa',
 		);
 
 		// Add hash to payment params.
-		$payupaisa_args['hash'] = self::get_hash( $payupaisa_args );
+		$payupaisa_args['HASH'] = self::get_hash( $payupaisa_args );
 
-		// Add service provider only for live.
-		if ( ! give_payu_is_sandbox_mode_enabled() ) {
-			// must be "payu_paisa"
-			$payupaisa_args['service_provider'] = 'payu_paisa';
-		}
+		/**
+		 * Filter the payumoney form arguments
+		 *
+		 * @since 1.0
+		 * @param array $payupaisa_args
+		 */
+		$payupaisa_args = apply_filters( 'give_payumoney_form_args', $payupaisa_args );
 
 		// Create input hidden fields.
 		$payupaisa_args_array = array();

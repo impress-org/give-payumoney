@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!doctype html>
 <html lang="en">
 	<head>
-		<title><?php _e( 'Process Donation with CCAvenue payment gateways', 'give-payumoney' ); ?></title>
+		<title><?php _e( 'Process Donation with PayUmoney payment gateways', 'give-payumoney' ); ?></title>
 	</head>
 	<body>
 		<!-- Request -->
