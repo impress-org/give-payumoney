@@ -159,9 +159,7 @@ class Give_Payumoney_API {
 			'zipcode'     => $donation_data['post_data']['card_zip'],
 			'curl'        => $form_url . '?success_payu_payment=1',
 			'udf1'        => $donation_id,
-
-			// 'pg'               => 'NB',
-			// 'phone'            => '00000000',
+			'comment'     => 'givewp',
 		);
 
 		// Add hash to payment params.
