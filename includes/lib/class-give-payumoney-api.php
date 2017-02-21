@@ -243,6 +243,9 @@ class Give_Payumoney_API {
 
 		wp_clear_scheduled_hook( "give_payumoney_set_donation_{$donation_id}_abandoned", array( absint( $donation_id ) ) );
 
+		give_set_payment_transaction_id( $donation_id, $_REQUEST['txnid'] );
+		update_post_meta( $donation_id, 'payumoney_donation_response', $_REQUEST );
+
 		$form_url = add_query_arg(
 			array(
 				'form-id'             => absint( $_POST['udf2'] ),
