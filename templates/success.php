@@ -50,7 +50,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		 *      [udf7] =>
 		 *      [udf8] =>
 		 *      [udf9] =>
-		 *      [udf10] =>
+		 *      [udf10] => givewp
 		 *      [hash] => 964fbafecf32c696a3465828a21b8985b53a55f9677c77f82bb53967d8bb9bb2b41c7baec5b38ca1c9a125d085c8aaad26919c5bcce75d668b342d1633ce402b
 		 *      [field1] => 629917698996
 		 *      [field2] => 999999
@@ -79,35 +79,22 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 			if ( ! empty( $donation_id ) ) {
 				try {
-					$donation  = new Give_Payment( $donation_id );
-					$hash      = $_REQUEST['hash'];
-					$status    = $_REQUEST['status'];
-					$checkhash = Give_Payumoney_API::get_hash( $_REQUEST );
+					$donation = new Give_Payment( $donation_id );
+					$hash     = $_REQUEST['hash'];
 
 					if ( $donation->status !== 'completed' ) {
 						// Process each payment status.
-						switch ( esc_attr( $_POST['status'] ) ) {
+						switch ( esc_attr( $_REQUEST['status'] ) ) {
 							case 'success':
-								$donation = new Give_Payment( absint( $_POST['udf1'] ) );
-								$donation->update_status( 'completed' );
-								give_set_payment_transaction_id( $donation_id, $_REQUEST['mihpayid'] );
-								update_post_meta( $donation_id, 'payumoney_donation_response', $_REQUEST );
-
-								give_send_to_success_page();
+								Give_Payumoney_API::process_success( $donation_id );
 								break;
 
 							case 'failure':
-								$donation->update_status( 'revoked' );
-								wp_clear_scheduled_hook( 'give_payumoney_set_donation_abandoned' );
-								?>
-								<form action="<?php echo '?form-id=' . absint( $_POST['udf1'] ) . '&payment_mode = payumoney'; ?>" name="payuFailure" method="post">
-									<input type="hidden" name="payu-error-message" value="<?php echo $_POST['error_Message']; ?>">
-								</form>
-								<script>document.payuFailure.submit();</script>
-								<?php
+								Give_Payumoney_API::process_failure( $donation_id );
 								break;
 
 							case 'pending':
+								Give_Payumoney_API::process_pending( $donation_id );
 								break;
 						}
 					}

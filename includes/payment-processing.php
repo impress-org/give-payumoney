@@ -34,9 +34,6 @@ function give_process_payumoney_payment( $donation_data ) {
 	// Record the pending payment.
 	$payment = give_insert_payment( $donation_payment_data );
 
-	// Auto set payment to abandoned in one hour if donor is not able to donate in that time.
-	wp_schedule_single_event( current_time( 'timestamp', 1 ) + HOUR_IN_SECONDS, 'give_payumoney_set_donation_abandoned', array( $payment ) );
-
 	// Verify donation payment.
 	if ( ! $payment ) {
 		// Record the error.
@@ -54,8 +51,11 @@ function give_process_payumoney_payment( $donation_data ) {
 		give_send_back_to_checkout( '?payment-mode=' . $donation_data['post_data']['give-gateway'] );
 	}
 
+	// Auto set payment to abandoned in one hour if donor is not able to donate in that time.
+	wp_schedule_single_event( current_time( 'timestamp', 1 ) + HOUR_IN_SECONDS, "give_payumoney_set_donation_{$payment}_abandoned", array( $payment ) );
+
 	// Send to success page.
-	wp_redirect( home_url( '/?process_payu_payment=processing&donation=' . $payment ) );
+	wp_redirect( home_url( "/?process_payu_payment=processing&donation={$payment}&form-id={$form_id}" ) );
 	exit();
 }
 

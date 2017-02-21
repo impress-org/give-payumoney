@@ -27,17 +27,9 @@ function give_payu_show_frontend_notices( $form_id ) {
 		return;
 	}
 
-	if ( isset( $_GET['payu-error-message'] ) ) {
-		if ( $error_message = sanitize_text_field( $_GET['payu-error-message'] ) ) {
-
-			// Show error.
-			give_output_error( $error_message , true, 'error' );
-		}
-	}
-
-	if ( isset( $_GET['process_payu_payment'] ) && 'failed' === $_GET['process_payu_payment'] ) {
+	if ( isset( $_GET['payu-payment-status'] ) && 'failure' === $_GET['payu-payment-status'] ) {
 		// Show error.
-		give_output_error( __( 'Transaction failed. Please try after some time.', 'give-payumoney' ) , true, 'error' );
+		give_output_error( __( 'PayU payment failed.', 'give-payumoney' ), true, 'error' );
 	}
 }
 add_action( 'give_pre_form_output', 'give_payu_show_frontend_notices' );

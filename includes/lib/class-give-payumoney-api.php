@@ -100,7 +100,10 @@ class Give_Payumoney_API {
 	 * @return string
 	 */
 	public function show_payu_payment_success_template( $template ) {
-		if ( isset( $_GET['process_payu_payment'] ) && 'success' === $_GET['process_payu_payment'] ) {
+		if (
+			isset( $_REQUEST['process_payu_payment'] )
+			&& in_array( $_REQUEST['process_payu_payment'], array( 'success', 'failure' ) )
+		) {
 			$template = GIVE_PAYU_DIR . 'templates/success.php';
 		}
 
@@ -108,11 +111,16 @@ class Give_Payumoney_API {
 	}
 
 	/**
-	 * @param $payupaisa_args
+	 * @param        $payupaisa_args
+	 *
+	 * @since  1.0
+	 * @access public
+	 *
+	 * @param array  $payupaisa_args
 	 *
 	 * @return string
 	 */
-	static function get_hash( $payupaisa_args ) {
+	public static function get_hash( $payupaisa_args ) {
 		$hashSequence = 'key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10';
 
 		$hashVarsSeq = explode( '|', $hashSequence );
@@ -138,6 +146,7 @@ class Give_Payumoney_API {
 	public static function get_form() {
 		$donation_data = Give()->session->get( 'give_purchase' );
 		$donation_id   = absint( $_GET['donation'] );
+		$form_id       = absint( $_GET['form-id'] );
 
 		$form_url = trailingslashit( current( explode( '?', $donation_data['post_data']['give-current-url'] ) ) );
 
@@ -149,7 +158,7 @@ class Give_Payumoney_API {
 			'email'            => $donation_data['post_data']['give_email'],
 			'productinfo'      => "This payment is donation against #{$donation_id}",
 			'surl'             => $form_url . '?process_payu_payment=success',
-			'furl'             => $form_url . "?form-id={$donation_data['post_data']['give-form-id']}&payment_mode=payumoney&process_payu_payment=failed",
+			'furl'             => $form_url . '?process_payu_payment=failure',
 			'lastname'         => $donation_data['post_data']['give_last'],
 			'address1'         => $donation_data['post_data']['card_address'],
 			'address2'         => $donation_data['post_data']['card_address_2'],
@@ -157,9 +166,10 @@ class Give_Payumoney_API {
 			'state'            => $donation_data['post_data']['card_state'],
 			'country'          => $donation_data['post_data']['billing_country'],
 			'zipcode'          => $donation_data['post_data']['card_zip'],
-			'curl'             => $form_url . '?success_payu_payment=1',
 			'udf1'             => $donation_id,
-			'comment'          => 'givewp',
+			'udf2'             => $form_id,
+			'udf3'             => $form_url,
+			'udf10'            => 'givewp',
 			'service_provider' => 'payu_paisa',
 		);
 
@@ -170,6 +180,7 @@ class Give_Payumoney_API {
 		 * Filter the payumoney form arguments
 		 *
 		 * @since 1.0
+		 *
 		 * @param array $payupaisa_args
 		 */
 		$payupaisa_args = apply_filters( 'give_payumoney_form_args', $payupaisa_args );
@@ -192,6 +203,73 @@ class Give_Payumoney_API {
 
 		return $form_html;
 	}
+
+
+	/**
+	 * Process payumoney success payment.
+	 *
+	 * @since  1.0
+	 *
+	 * @access public
+	 *
+	 * @param int $donation_id
+	 */
+	public static function process_success( $donation_id ) {
+		$donation = new Give_Payment( absint( $_POST['udf1'] ) );
+		$donation->update_status( 'completed' );
+		$donation->add_note( sprintf( __( 'PayU payment completed (Transaction id: %s)', 'give-payumoney' ), $_REQUEST['txnid'] ) );
+
+		wp_clear_scheduled_hook( "give_payumoney_set_donation_{$donation_id}_abandoned", array( absint( $donation_id ) ) );
+
+		give_set_payment_transaction_id( $donation_id, $_REQUEST['txnid'] );
+		update_post_meta( $donation_id, 'payumoney_donation_response', $_REQUEST );
+
+		give_send_to_success_page();
+	}
+
+	/**
+	 * Process payumoney failure payment.
+	 *
+	 * @since  1.0
+	 *
+	 * @access public
+	 *
+	 * @param int $donation_id
+	 */
+	public static function process_failure( $donation_id ) {
+		$donation = new Give_Payment( $donation_id );
+		$donation->update_status( 'revoked' );
+		$donation->add_note( sprintf( __( 'PayU payment failed (Transaction id: %s)', 'give-payumoney' ), $_REQUEST['txnid'] ) );
+
+		wp_clear_scheduled_hook( "give_payumoney_set_donation_{$donation_id}_abandoned", array( absint( $donation_id ) ) );
+
+		$form_url = add_query_arg(
+			array(
+				'form-id'             => absint( $_POST['udf2'] ),
+				'payment-mode'        => 'payumoney',
+				'payu-payment-status' => 'failure',
+
+			),
+			$_POST['udf3']
+		);
+
+		wp_redirect( $form_url );
+		exit();
+	}
+
+	/**
+	 * Process payumoney pending payment.
+	 *
+	 * @since  1.0
+	 *
+	 * @access public
+	 *
+	 * @param int $donation_id
+	 */
+	public static function process_pending( $donation_id ) {
+	}
 }
 
 Give_Payumoney_API::get_instance()->setup_params()->setup_hooks();
+
+// @TODO: add logs and note when process donation.

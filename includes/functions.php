@@ -56,8 +56,8 @@ function give_payu_get_merchant_credentials() {
 
 	if ( ! give_payu_is_sandbox_mode_enabled() && ! give_is_test_mode() ) {
 		$credentials = array(
-			'merchant_key' => give_get_option( 'payumoney_sandbox_merchant_key', '' ),
-			'salt_key'     => give_get_option( 'payumoney_sandbox_salt_key', '' ),
+			'merchant_key' => give_get_option( 'payumoney_live_merchant_key', '' ),
+			'salt_key'     => give_get_option( 'payumoney_live_salt_key', '' ),
 		);
 	}
 
