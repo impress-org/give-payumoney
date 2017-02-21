@@ -246,17 +246,17 @@ class Give_Payumoney_API {
 		give_set_payment_transaction_id( $donation_id, $_REQUEST['txnid'] );
 		update_post_meta( $donation_id, 'payumoney_donation_response', $_REQUEST );
 
-		$form_url = add_query_arg(
-			array(
-				'form-id'             => absint( $_POST['udf2'] ),
-				'payment-mode'        => 'payumoney',
-				'payu-payment-status' => 'failure',
+		// $form_url = add_query_arg(
+		// 	array(
+		// 		'form-id'             => absint( $_POST['udf2'] ),
+		// 		'payment-mode'        => 'payumoney',
+		// 		'payu-payment-status' => 'failure',
+		//
+		// 	),
+		// 	$_POST['udf3']
+		// );
 
-			),
-			$_POST['udf3']
-		);
-
-		wp_redirect( $form_url );
+		wp_redirect( give_get_failed_transaction_uri() );
 		exit();
 	}
 
