@@ -238,7 +238,7 @@ class Give_Payumoney_API {
 	 */
 	public static function process_failure( $donation_id ) {
 		$donation = new Give_Payment( $donation_id );
-		$donation->update_status( 'revoked' );
+		$donation->update_status( 'failed' );
 		$donation->add_note( sprintf( __( 'PayUmoney payment failed (Transaction id: %s)', 'give-payumoney' ), $_REQUEST['txnid'] ) );
 
 		wp_clear_scheduled_hook( "give_payumoney_set_donation_{$donation_id}_abandoned", array( absint( $donation_id ) ) );
