@@ -283,5 +283,3 @@ class Give_Payumoney_API {
 }
 
 Give_Payumoney_API::get_instance()->setup_params()->setup_hooks();
-
-// @TODO: add logs and note when process donation.
