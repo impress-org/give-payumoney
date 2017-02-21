@@ -55,7 +55,24 @@ add_action( 'give-settings_saved', 'give_payumoney_check_dependancies' );
  * @return mixed
  */
 function give_payu_disable_by_agent_credentials( $messages ) {
-	$messages['iats-disable'] = sprintf( __( 'PayUmoney payment gateway disabled automatically because <a href="%s">merchant credentials</a> is not correct.', 'give-payumoney' ), admin_url( 'edit.php?post_type=give_forms&page=give-settings&tab=gateways&section=payumoney' ) );
+	$messages['give-payumoney-disable'] = sprintf( __( 'PayUmoney payment gateway disabled automatically because <a href="%s">merchant credentials</a> is not correct.', 'give-payumoney' ), admin_url( 'edit.php?post_type=give_forms&page=give-settings&tab=gateways&section=payumoney' ) );
 
 	return $messages;
 }
+
+
+/**
+ * Show transaction ID under donation meta.
+ *
+ * @since 1.0
+ */
+function give_payu_show_transaction_id() {
+	?>
+	<div class="give-order-tx-id give-admin-box-inside">
+		<p>
+			<strong><?php _e( 'Transaction ID:', 'give-payumoney' ); ?></strong>&nbsp;<?php echo get_post_meta( absint( $_GET['id'] ), '_give_payment_transaction_id', true ); ?>
+		</p>
+	</div>
+	<?php
+}
+add_action( 'give_view_order_details_payment_meta_after', 'give_payu_show_transaction_id' );
