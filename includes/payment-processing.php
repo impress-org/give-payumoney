@@ -41,7 +41,7 @@ function give_process_payumoney_payment( $donation_data ) {
 			esc_html__( 'Payment Error', 'give' ),
 			/* translators: %s: payment data */
 			sprintf(
-				esc_html__( 'Payment creation failed before process Payumoney gateway. Payment data: %s', 'give' ),
+				esc_html__( 'Payment creation failed before process PayUmoney gateway. Payment data: %s', 'give' ),
 				json_encode( $donation_payment_data )
 			),
 			$payment

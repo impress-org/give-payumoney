@@ -27,7 +27,7 @@ function give_is_payu_active() {
  * @return string
  */
 function give_payu_get_payment_method_label() {
-	return ( give_get_option( 'payumoney_payment_method_label', false ) ?  give_get_option( 'payumoney_payment_method_label', '' ) : __( 'Payumoney', 'give-payuoney' ) );
+	return ( give_get_option( 'payumoney_payment_method_label', false ) ?  give_get_option( 'payumoney_payment_method_label', '' ) : __( 'PayUmoney', 'give-payuoney' ) );
 }
 
 

@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: Give - Payumoney
+ * Plugin Name: Give - PayUmoney
  * Plugin URI: https://github.com/WordImpress/payumoney
  * Description: Accept donations with payumoney payment gateway with Give.
  * Author: WordImpress

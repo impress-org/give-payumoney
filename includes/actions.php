@@ -29,7 +29,7 @@ function give_payu_show_frontend_notices( $form_id ) {
 
 	if ( isset( $_GET['payu-payment-status'] ) && 'failure' === $_GET['payu-payment-status'] ) {
 		// Show error.
-		give_output_error( __( 'PayU payment failed.', 'give-payumoney' ), true, 'error' );
+		give_output_error( __( 'PayUmoney payment failed.', 'give-payumoney' ), true, 'error' );
 	}
 }
 add_action( 'give_pre_form_output', 'give_payu_show_frontend_notices' );

@@ -217,7 +217,7 @@ class Give_Payumoney_API {
 	public static function process_success( $donation_id ) {
 		$donation = new Give_Payment( absint( $_POST['udf1'] ) );
 		$donation->update_status( 'completed' );
-		$donation->add_note( sprintf( __( 'PayU payment completed (Transaction id: %s)', 'give-payumoney' ), $_REQUEST['txnid'] ) );
+		$donation->add_note( sprintf( __( 'PayUmoney payment completed (Transaction id: %s)', 'give-payumoney' ), $_REQUEST['txnid'] ) );
 
 		wp_clear_scheduled_hook( "give_payumoney_set_donation_{$donation_id}_abandoned", array( absint( $donation_id ) ) );
 
@@ -239,7 +239,7 @@ class Give_Payumoney_API {
 	public static function process_failure( $donation_id ) {
 		$donation = new Give_Payment( $donation_id );
 		$donation->update_status( 'revoked' );
-		$donation->add_note( sprintf( __( 'PayU payment failed (Transaction id: %s)', 'give-payumoney' ), $_REQUEST['txnid'] ) );
+		$donation->add_note( sprintf( __( 'PayUmoney payment failed (Transaction id: %s)', 'give-payumoney' ), $_REQUEST['txnid'] ) );
 
 		wp_clear_scheduled_hook( "give_payumoney_set_donation_{$donation_id}_abandoned", array( absint( $donation_id ) ) );
 
@@ -271,7 +271,7 @@ class Give_Payumoney_API {
 	 */
 	public static function process_pending( $donation_id ) {
 		$donation = new Give_Payment( $donation_id );
-		$donation->add_note( sprintf( __( 'PayU payment has "%s" status. Check Transaction ID %s in PayU merchant dashboard for more information.', 'give-payumoney' ), $_REQUEST['status'], $_REQUEST['txnid'] ) );
+		$donation->add_note( sprintf( __( 'PayUmoney payment has "%s" status. Check Transaction ID %s in PayUmoney merchant dashboard for more information.', 'give-payumoney' ), $_REQUEST['status'], $_REQUEST['txnid'] ) );
 
 		wp_clear_scheduled_hook( "give_payumoney_set_donation_{$donation_id}_abandoned", array( absint( $donation_id ) ) );
 

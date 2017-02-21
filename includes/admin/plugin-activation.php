@@ -60,7 +60,7 @@ function give_payu_activation_banner() {
 		// Only runs on admin.
 		$args = array(
 			'file'              => __FILE__,
-			'name'              => esc_html__( 'Payumoney', 'give-payumoney' ),
+			'name'              => esc_html__( 'PayUmoney', 'give-payumoney' ),
 			'version'           => GIVE_PAYU_VERSION,
 			'documentation_url' => 'https://github.com/WordImpress/payumoney',
 			'support_url'       => 'https://github.com/WordImpress/payumoney',
@@ -82,7 +82,7 @@ function give_payu_activation_banner() {
  * @since 1.3.3
  */
 function give_payu_inactive_notice() {
-	echo '<div class="error"><p>' . __( '<strong>Activation Error:</strong> You must have the <a href="https://givewp.com/" target="_blank">Give</a> plugin installed and activated for the Payumoney Add-on to activate.', 'give-payumoney' ) . '</p></div>';
+	echo '<div class="error"><p>' . __( '<strong>Activation Error:</strong> You must have the <a href="https://givewp.com/" target="_blank">Give</a> plugin installed and activated for the PayUmoney Add-on to activate.', 'give-payumoney' ) . '</p></div>';
 }
 
 /**
@@ -91,5 +91,5 @@ function give_payu_inactive_notice() {
  * @since 1.3.3
  */
 function give_payu_version_notice() {
-	echo '<div class="error"><p>' . sprintf( __( '<strong>Activation Error:</strong> You must have <a href="%1$s" target="_blank">Give</a> minimum version %2$s for the Payumoney Add-on to activate.', 'give-payumoney' ), 'https://givewp.com', GIVE_PAYU_MIN_GIVE_VER ) . '</p></div>';
+	echo '<div class="error"><p>' . sprintf( __( '<strong>Activation Error:</strong> You must have <a href="%1$s" target="_blank">Give</a> minimum version %2$s for the PayUmoney Add-on to activate.', 'give-payumoney' ), 'https://givewp.com', GIVE_PAYU_MIN_GIVE_VER ) . '</p></div>';
 }
