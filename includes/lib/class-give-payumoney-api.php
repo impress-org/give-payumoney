@@ -270,6 +270,15 @@ class Give_Payumoney_API {
 	 * @param int $donation_id
 	 */
 	public static function process_pending( $donation_id ) {
+		$donation = new Give_Payment( $donation_id );
+		$donation->add_note( sprintf( __( 'PayU payment has "%s" status. Check Transaction ID %s in PayU merchant dashboard for more information.', 'give-payumoney' ), $_REQUEST['status'], $_REQUEST['txnid'] ) );
+
+		wp_clear_scheduled_hook( "give_payumoney_set_donation_{$donation_id}_abandoned", array( absint( $donation_id ) ) );
+
+		give_set_payment_transaction_id( $donation_id, $_REQUEST['txnid'] );
+		update_post_meta( $donation_id, 'payumoney_donation_response', $_REQUEST );
+
+		give_send_to_success_page();
 	}
 }
 

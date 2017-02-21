@@ -93,9 +93,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 								Give_Payumoney_API::process_failure( $donation_id );
 								break;
 
-							case 'pending':
+							default:
 								Give_Payumoney_API::process_pending( $donation_id );
-								break;
 						}
 					}
 				} catch ( Exception $e ) {
