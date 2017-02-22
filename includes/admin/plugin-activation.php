@@ -50,25 +50,30 @@ function give_payu_activation_banner() {
 
 	}
 
-	// Check for activation banner inclusion.
-	if ( ! class_exists( 'Give_Addon_Activation_Banner' )
-	     && file_exists( GIVE_PLUGIN_DIR . 'includes/admin/class-addon-activation-banner.php' )
-	) {
+	// Only runs on admin.
+	if ( is_admin() ) {
 
-		include GIVE_PLUGIN_DIR . 'includes/admin/class-addon-activation-banner.php';
+		// Check for activation banner inclusion.
+		if ( ! class_exists( 'Give_Addon_Activation_Banner' )
+		     && file_exists( GIVE_PLUGIN_DIR . 'includes/admin/class-addon-activation-banner.php' )
+		) {
 
-		// Only runs on admin.
+			include GIVE_PLUGIN_DIR . 'includes/admin/class-addon-activation-banner.php';
+
+		}
+
+
 		$args = array(
 			'file'              => __FILE__,
 			'name'              => esc_html__( 'PayUmoney', 'give-payumoney' ),
 			'version'           => GIVE_PAYU_VERSION,
+			'settings_url'      => admin_url( 'edit.php?post_type=give_forms&page=give-settings&tab=gateways&section=payumoney' ),
 			'documentation_url' => 'https://github.com/WordImpress/payumoney',
 			'support_url'       => 'https://github.com/WordImpress/payumoney',
 			'testing'           => false,// Never leave true.
 		);
 
 		new Give_Addon_Activation_Banner( $args );
-
 	}
 
 	return false;
