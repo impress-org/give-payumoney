@@ -244,17 +244,12 @@ class Give_Payumoney_API {
 		wp_clear_scheduled_hook( "give_payumoney_set_donation_{$donation_id}_abandoned", array( absint( $donation_id ) ) );
 
 		give_set_payment_transaction_id( $donation_id, $_REQUEST['txnid'] );
-		update_post_meta( $donation_id, 'payumoney_donation_response', $_REQUEST );
 
-		// $form_url = add_query_arg(
-		// 	array(
-		// 		'form-id'             => absint( $_POST['udf2'] ),
-		// 		'payment-mode'        => 'payumoney',
-		// 		'payu-payment-status' => 'failure',
-		//
-		// 	),
-		// 	$_POST['udf3']
-		// );
+		give_record_gateway_error(
+			esc_html__( 'PayUmoney Error', 'give-payumoney' ),
+			esc_html__( 'The PayUmoney Gateway returned an error while charging a donation.', 'give-payumoney' ) . '<br><br>' . sprintf( esc_attr__( 'Details: %s', 'give-stripe' ), '<br>' . print_r( $_REQUEST, true ) ),
+			$donation_id
+		);
 
 		wp_redirect( give_get_failed_transaction_uri() );
 		exit();
@@ -271,12 +266,17 @@ class Give_Payumoney_API {
 	 */
 	public static function process_pending( $donation_id ) {
 		$donation = new Give_Payment( $donation_id );
-		$donation->add_note( sprintf( __( 'PayUmoney payment has "%s" status. Check Transaction ID %s in PayUmoney merchant dashboard for more information.', 'give-payumoney' ), $_REQUEST['status'], $_REQUEST['txnid'] ) );
+		$donation->add_note( sprintf( __( 'PayUmoney payment has "%s" status. Check Transaction ID %s in PayUmoney merchant dashboard for more information or check the <a href="%s">payment gateway error logs</a> for additional details', 'give-payumoney' ), $_REQUEST['status'], $_REQUEST['txnid'], admin_url( 'edit.php?post_type=give_forms&page=give-tools&tab=logs&section=gateway_errors' ) ) );
 
 		wp_clear_scheduled_hook( "give_payumoney_set_donation_{$donation_id}_abandoned", array( absint( $donation_id ) ) );
 
 		give_set_payment_transaction_id( $donation_id, $_REQUEST['txnid'] );
-		update_post_meta( $donation_id, 'payumoney_donation_response', $_REQUEST );
+
+		give_record_gateway_error(
+			esc_html__( 'PayUmoney Error', 'give-payumoney' ),
+			esc_html__( 'The PayUmoney Gateway returned an error while charging a donation.', 'give-payumoney' ) . '<br><br>' . sprintf( esc_attr__( 'Details: %s', 'give-payumoney' ), '<br>' . print_r( $_REQUEST, true ) ),
+			$donation_id
+		);
 
 		give_send_to_success_page();
 	}
