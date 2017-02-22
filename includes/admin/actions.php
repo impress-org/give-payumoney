@@ -66,13 +66,8 @@ function give_payu_disable_by_agent_credentials( $messages ) {
  *
  * @since 1.0
  */
-function give_payu_show_transaction_id() {
-	?>
-	<div class="give-order-tx-id give-admin-box-inside">
-		<p>
-			<strong><?php _e( 'Transaction ID:', 'give-payumoney' ); ?></strong>&nbsp;<?php echo get_post_meta( absint( $_GET['id'] ), '_give_payment_transaction_id', true ); ?>
-		</p>
-	</div>
-	<?php
+function give_payumoney_link_transaction_id( $transaction_id ) {
+	$payumoney_response = get_post_meta( absint( $_GET['id'] ), 'payumoney_donation_response', true );
+	echo sprintf( '<a href="https://www.payumoney.com/merchant/dashboard/#/paymentCompleteDetails/%s" target="_blank">%s</a>', $payumoney_response['payuMoneyId'], $payumoney_response['txnid'] );
 }
-add_action( 'give_view_order_details_payment_meta_after', 'give_payu_show_transaction_id' );
+add_filter( 'give_payment_details_transaction_id-payumoney', 'give_payumoney_link_transaction_id', 10, 2 );
