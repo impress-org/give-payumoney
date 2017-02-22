@@ -61,7 +61,7 @@ final class Give_Payumoney_Gateway {
 	public function setup_constants() {
 		// Global Params.
 		define( 'GIVE_PAYU_VERSION', '1.0' );
-		define( 'GIVE_PAYU_MIN_GIVE_VER', '1.8.3' );
+		define( 'GIVE_PAYU_MIN_GIVE_VER', '1.8.2' );
 		define( 'GIVE_PAYU_BASENAME', plugin_basename( __FILE__ ) );
 		define( 'GIVE_PAYU_URL', plugins_url( '/', __FILE__ ) );
 		define( 'GIVE_PAYU_DIR', plugin_dir_path( __FILE__ ) );
