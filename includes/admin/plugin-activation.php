@@ -49,12 +49,11 @@ function give_payu_activation_banner() {
 	}
 
 	// Check for activation banner inclusion.
-	if ( ! class_exists( 'Give_Addon_Activation_Banner' )
-	     && file_exists( GIVE_PLUGIN_DIR . 'includes/admin/class-addon-activation-banner.php' )
+	if (
+		! class_exists( 'Give_Addon_Activation_Banner' )
+		&& file_exists( GIVE_PLUGIN_DIR . 'includes/admin/class-addon-activation-banner.php' )
 	) {
-
 		include GIVE_PLUGIN_DIR . 'includes/admin/class-addon-activation-banner.php';
-
 	}
 
 	// Initialize activation welcome banner.
