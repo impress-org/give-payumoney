@@ -66,7 +66,7 @@ function give_payu_activation_banner() {
 			'settings_url'      => admin_url( 'edit.php?post_type=give_forms&page=give-settings&tab=gateways&section=payumoney' ),
 			'documentation_url' => 'http://docs.givewp.com/addon-payumoney',
 			'support_url'       => 'https://github.com/WordImpress/payumoney',
-			'testing'           => false,// Never leave true.
+			'testing'           => false, // Never leave true.
 		);
 
 		new Give_Addon_Activation_Banner( $args );
