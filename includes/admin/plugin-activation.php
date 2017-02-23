@@ -61,7 +61,7 @@ function give_payu_activation_banner() {
 
 		$args = array(
 			'file'              => __FILE__,
-			'name'              => esc_html__( 'PayUmoney', 'give-payumoney' ),
+			'name'              => esc_html__( 'PayUmoney Gateway', 'give-payumoney' ),
 			'version'           => GIVE_PAYU_VERSION,
 			'settings_url'      => admin_url( 'edit.php?post_type=give_forms&page=give-settings&tab=gateways&section=payumoney' ),
 			'documentation_url' => 'http://docs.givewp.com/addon-payumoney',
