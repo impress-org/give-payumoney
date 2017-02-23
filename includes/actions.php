@@ -22,8 +22,9 @@ add_action( 'give_payumoney_set_donation_abandoned', 'give_payumoney_set_donatio
 
 /**
  * Validate payumoney settings.
- * 
+ *
  * @since 1.0
+ *
  * @param $options
  */
 function give_payu_validate_settings( $options ) {

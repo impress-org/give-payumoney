@@ -20,4 +20,5 @@ function give_pauy_form_validation_message( $messages ) {
 
 	return $messages;
 }
+
 add_filter( 'give_form_translation_js', 'give_pauy_form_validation_message' );
