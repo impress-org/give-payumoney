@@ -56,7 +56,7 @@ add_action( 'give_save_settings_give_settings', 'give_payu_validate_settings' );
  */
 function give_payu_add_phone_field( $form_id ) {
 	// Bailout.
-	if ( 'payumoney' !== give_get_chosen_gateway( $form_id ) ) {
+	if ( 'payumoney' !== give_get_chosen_gateway( $form_id ) || ! give_is_setting_enabled( give_get_option('payumoney_phone_field') ) ) {
 		return false;
 	}
 	?>
