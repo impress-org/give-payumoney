@@ -90,6 +90,11 @@ function give_payu_view_details( $payment_id ) {
 	}
 
 	$payumoney_response = get_post_meta( absint( $_GET['id'] ), 'payumoney_donation_response', true );
+
+	// Check if phone exit in payumoney response.
+	if ( empty( $payumoney_response['phone'] ) ) {
+		return false;
+	}
 	?>
 	<div class="column">
 		<p>
