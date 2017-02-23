@@ -156,7 +156,7 @@ class Give_Payumoney_API {
 			'amount'           => $donation_data['post_data']['give-amount'],
 			'firstname'        => $donation_data['post_data']['give_first'],
 			'email'            => $donation_data['post_data']['give_email'],
-			'phone'            => $donation_data['post_data']['give_payumoney_phone'],
+			'phone'            => ( isset( $donation_data['post_data']['give_payumoney_phone'] ) ? $donation_data['post_data']['give_payumoney_phone'] : '' ),
 			'productinfo'      => "This payment is donation against #{$donation_id}",
 			'surl'             => $form_url . '?process_payu_payment=success',
 			'furl'             => $form_url . '?process_payu_payment=failure',
