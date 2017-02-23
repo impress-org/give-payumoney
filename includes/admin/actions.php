@@ -70,4 +70,34 @@ function give_payumoney_link_transaction_id( $transaction_id ) {
 	$payumoney_response = get_post_meta( absint( $_GET['id'] ), 'payumoney_donation_response', true );
 	echo sprintf( '<a href="https://www.payumoney.com/merchant/dashboard/#/paymentCompleteDetails/%s" target="_blank">%s</a>', $payumoney_response['payuMoneyId'], $payumoney_response['txnid'] );
 }
+
 add_filter( 'give_payment_details_transaction_id-payumoney', 'give_payumoney_link_transaction_id', 10, 2 );
+
+
+/**
+ * Add payumoney donor detail to "Donor Detail" metabox
+ *
+ * @since 1.0
+ *
+ * @param $payment_id
+ *
+ * @return bool
+ */
+function give_payu_view_details( $payment_id ) {
+	// Bailout.
+	if ( 'payumoney' !== give_get_payment_gateway( $payment_id ) ) {
+		return false;
+	}
+
+	$payumoney_response = get_post_meta( absint( $_GET['id'] ), 'payumoney_donation_response', true );
+	?>
+	<div class="column">
+		<p>
+			<strong><?php _e( 'Phone:', 'give-payumoney' ); ?></strong><br>
+			<?php echo $payumoney_response['phone']; ?>
+		</p>
+	</div>
+	<?php
+}
+
+add_action( 'give_payment_view_details', 'give_payu_view_details' );
