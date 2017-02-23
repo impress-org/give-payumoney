@@ -163,6 +163,17 @@ class Give_Payumoney_Gateway_Settings {
 					'desc'  => esc_html__( 'Required api key provided by payumoney.', 'give-payumoney' ),
 				),
 				array(
+					'title' => __( 'Show phone field', 'give-payumoney' ),
+					'id'    => 'payumoney_phone_field',
+					'type'  => 'radio_inline',
+					'desc'  => esc_html__( 'Enable this setting if you want to show phone field on donation form (this field is necessary for PayUmoney).', 'give-payumoney' ),
+					'default' => 'enabled',
+					'options' => array(
+						'enabled' => __( 'Enabled', 'give-payumoney' ),
+						'disabled' => __( 'Disabled', 'give-payumoney' ),
+					),
+				),
+				array(
 					'id'   => 'give_payumoney_payments_setting',
 					'type' => 'sectionend',
 				),
