@@ -38,7 +38,7 @@ function give_payu_get_payment_method_label() {
  * @return bool
  */
 function give_payu_is_sandbox_mode_enabled() {
-	return give_is_setting_enabled( give_get_option( 'payumoney_sandbox_testing' ) );
+	return give_is_test_mode();
 }
 
 
@@ -54,7 +54,7 @@ function give_payu_get_merchant_credentials() {
 		'salt_key'     => give_get_option( 'payumoney_sandbox_salt_key', '' ),
 	);
 
-	if ( ! give_payu_is_sandbox_mode_enabled() && ! give_is_test_mode() ) {
+	if ( ! give_payu_is_sandbox_mode_enabled() ) {
 		$credentials = array(
 			'merchant_key' => give_get_option( 'payumoney_live_merchant_key', '' ),
 			'salt_key'     => give_get_option( 'payumoney_live_salt_key', '' ),
@@ -75,7 +75,7 @@ function give_payu_get_merchant_credentials() {
 function give_payu_get_api_url() {
 	$api_url = 'https://test.payu.in/_payment';
 
-	if ( ! give_payu_is_sandbox_mode_enabled() && ! give_is_test_mode() ) {
+	if ( ! give_payu_is_sandbox_mode_enabled() ) {
 		$api_url = 'https://secure.payu.in/_payment';
 	}
 

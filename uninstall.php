@@ -9,7 +9,6 @@ $give_settings = give_get_settings();
 
 // List of plugin settings.
 $plugin_settings = array(
-	'payumoney_sandbox_testing',
 	'payumoney_payment_method_label',
 	'payumoney_sandbox_merchant_key',
 	'payumoney_sandbox_salt_key',

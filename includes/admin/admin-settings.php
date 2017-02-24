@@ -121,17 +121,6 @@ class Give_Payumoney_Gateway_Settings {
 					'type' => 'title',
 				),
 				array(
-					'title'   => esc_html__( 'Sandbox Testing', 'give-payumoney' ),
-					'id'      => 'payumoney_sandbox_testing',
-					'type'    => 'radio_inline',
-					'desc'    => '',
-					'default' => 'enabled',
-					'options' => array(
-						'enabled'  => esc_html__( 'Enabled', 'give-payumoney' ),
-						'disabled' => esc_html__( 'Disabled', 'give-payumoney' ),
-					),
-				),
-				array(
 					'title'   => esc_html__( 'Payment method label', 'give-payumoney' ),
 					'id'      => 'payumoney_payment_method_label',
 					'type'    => 'text',

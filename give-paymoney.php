@@ -109,7 +109,7 @@ final class Give_Payumoney_Gateway {
 	 */
 	public function setup_hooks() {
 		// Load scripts and style.
-		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
+		//add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 
 		return self::$instance;
 	}
