@@ -121,7 +121,7 @@ class Give_Payumoney_Gateway_Settings {
 					'type' => 'title',
 				),
 				array(
-					'title'   => esc_html__( 'Payment method label', 'give-payumoney' ),
+					'title'   => esc_html__( 'Payment Method Label', 'give-payumoney' ),
 					'id'      => 'payumoney_payment_method_label',
 					'type'    => 'text',
 					'default' => give_payu_get_payment_method_label(),
