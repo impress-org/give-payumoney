@@ -10,8 +10,19 @@ class Give_Payumoney_API {
 	 */
 	static private $instance;
 
+	/**
+	 * @var
+	 */
 	static private $api_url;
+
+	/**
+	 * @var
+	 */
 	static private $merchant_key;
+
+	/**
+	 * @var
+	 */
 	static private $salt_key;
 
 	/**
