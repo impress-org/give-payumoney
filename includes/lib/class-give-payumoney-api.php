@@ -157,7 +157,7 @@ class Give_Payumoney_API {
 			'firstname'        => $donation_data['post_data']['give_first'],
 			'email'            => $donation_data['post_data']['give_email'],
 			'phone'            => ( isset( $donation_data['post_data']['give_payumoney_phone'] ) ? $donation_data['post_data']['give_payumoney_phone'] : '' ),
-			'productinfo'      => "This payment is donation against #{$donation_id}",
+			'productinfo'      => "This donation is against payment {$donation_id}",
 			'surl'             => $form_url . '?process_payu_payment=success',
 			'furl'             => $form_url . '?process_payu_payment=failure',
 			'lastname'         => $donation_data['post_data']['give_last'],
@@ -170,12 +170,12 @@ class Give_Payumoney_API {
 			'udf1'             => $donation_id,
 			'udf2'             => $form_id,
 			'udf3'             => $form_url,
-			'udf10'            => 'givewp',
+			'udf5'            => 'givewp',
 			'service_provider' => 'payu_paisa',
 		);
 
 		// Add hash to payment params.
-		$payupaisa_args['HASH'] = self::get_hash( $payupaisa_args );
+		$payupaisa_args['hash'] = self::get_hash( $payupaisa_args );
 
 		/**
 		 * Filter the payumoney form arguments
