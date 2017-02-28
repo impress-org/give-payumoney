@@ -1,6 +1,6 @@
 <?php
 /**
- * Check if iATS payment gateway active or not.
+ * Check if the PayUmoney payment gateway is active or not.
  *
  * @since 1.0
  * @return bool
