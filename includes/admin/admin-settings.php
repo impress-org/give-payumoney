@@ -128,28 +128,28 @@ class Give_Payumoney_Gateway_Settings {
 					'desc'    => __( 'Payment method label will be appear on frontend.', 'give-payumoney' ),
 				),
 				array(
-					'title' => __( 'Sandbox Merchant Key', 'give-payumoney' ),
-					'id'    => 'payumoney_sandbox_merchant_key',
-					'type'  => 'text',
-					'desc'  => __( 'Required merchant id provided by payumoney.', 'give-payumoney' ),
-				),
-				array(
-					'title' => __( 'Sandbox API Key', 'give-payumoney' ),
-					'id'    => 'payumoney_sandbox_salt_key',
-					'type'  => 'api_key',
-					'desc'  => __( 'Required api key provided by payumoney.', 'give-payumoney' ),
-				),
-				array(
 					'title' => __( 'Live Merchant Key', 'give-payumoney' ),
 					'id'    => 'payumoney_live_merchant_key',
 					'type'  => 'text',
-					'desc'  => __( 'Required merchant id provided by payumoney.', 'give-payumoney' ),
+					'desc'  => __( 'Required LIVE Merchant ID provided by payumoney.', 'give-payumoney' ),
 				),
 				array(
-					'title' => __( 'Live API Key', 'give-payumoney' ),
+					'title' => __( 'Live Merchant Salt', 'give-payumoney' ),
 					'id'    => 'payumoney_live_salt_key',
 					'type'  => 'api_key',
-					'desc'  => __( 'Required api key provided by payumoney.', 'give-payumoney' ),
+					'desc'  => __( 'Required LIVE Merchant Salt provided by payumoney.', 'give-payumoney' ),
+				),
+				array(
+					'title' => __( 'Sandbox Merchant Key', 'give-payumoney' ),
+					'id'    => 'payumoney_sandbox_merchant_key',
+					'type'  => 'text',
+					'desc'  => __( 'Required TEST Merchant Key provided by payumoney.', 'give-payumoney' ),
+				),
+				array(
+					'title' => __( 'Sandbox Merchant Salt', 'give-payumoney' ),
+					'id'    => 'payumoney_sandbox_salt_key',
+					'type'  => 'api_key',
+					'desc'  => __( 'Required TEST Merchant Salt provided by payumoney.', 'give-payumoney' ),
 				),
 				array(
 					'title' => __( 'Show Phone Field', 'give-payumoney' ),
