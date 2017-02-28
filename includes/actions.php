@@ -56,7 +56,10 @@ add_action( 'give_save_settings_give_settings', 'give_payu_validate_settings' );
  */
 function give_payu_add_phone_field( $form_id ) {
 	// Bailout.
-	if ( 'payumoney' !== give_get_chosen_gateway( $form_id ) || ! give_is_setting_enabled( give_get_option('payumoney_phone_field') ) ) {
+	if (
+		'payumoney' !== give_get_chosen_gateway( $form_id )
+		|| ! give_is_setting_enabled( give_get_option( 'payumoney_phone_field' ) )
+	) {
 		return false;
 	}
 	?>
@@ -64,7 +67,8 @@ function give_payu_add_phone_field( $form_id ) {
 		<label class="give-label" for="give-phone">
 			<?php esc_html_e( 'Phone', 'give-payumoney' ); ?>
 			<span class="give-required-indicator">*</span>
-			<span class="give-tooltip give-icon give-icon-question" data-tooltip="<?php esc_attr_e( 'Enter only phone number.', 'give-payumoney' ); ?>"></span>
+			<span class="give-tooltip give-icon give-icon-question"
+				  data-tooltip="<?php esc_attr_e( 'Enter only phone number.', 'give-payumoney' ); ?>"></span>
 
 		</label>
 
@@ -72,7 +76,6 @@ function give_payu_add_phone_field( $form_id ) {
 				class="give-input required"
 				type="tel"
 				name="give_payumoney_phone"
-				placeholder="<?php esc_attr_e( '99999999999', 'give' ); ?>"
 				id="give-phone"
 				value="<?php echo isset( $give_user_info['give_phone'] ) ? $give_user_info['give_phone'] : ''; ?>"
 				required
