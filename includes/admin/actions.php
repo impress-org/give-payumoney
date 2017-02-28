@@ -65,10 +65,23 @@ function give_payu_disable_by_agent_credentials( $messages ) {
  * Show transaction ID under donation meta.
  *
  * @since 1.0
+ *
+ * @param $transaction_id
  */
 function give_payumoney_link_transaction_id( $transaction_id ) {
+
+	$payment = new Give_Payment( $transaction_id );
+
+	$payumoney_trans_url = 'https://www.payumoney.com/merchant/dashboard/#/paymentCompleteDetails/';
+
+	if ( 'test' === $payment->mode ) {
+		$payumoney_trans_url = 'https://test.payumoney.com/merchant/dashboard/#/paymentCompleteDetails/';
+	}
+
 	$payumoney_response = get_post_meta( absint( $_GET['id'] ), 'payumoney_donation_response', true );
-	echo sprintf( '<a href="https://www.payumoney.com/merchant/dashboard/#/paymentCompleteDetails/%s" target="_blank">%s</a>', $payumoney_response['payuMoneyId'], $payumoney_response['txnid'] );
+	$payumoney_trans_url .= $payumoney_response['payuMoneyId'];
+
+	echo sprintf( '<a href="%1$s" target="_blank">%2$s</a>', $payumoney_trans_url, $payumoney_response['txnid'] );
 }
 
 add_filter( 'give_payment_details_transaction_id-payumoney', 'give_payumoney_link_transaction_id', 10, 2 );
@@ -96,12 +109,12 @@ function give_payu_view_details( $payment_id ) {
 		return false;
 	}
 	?>
-	<div class="column">
-		<p>
-			<strong><?php _e( 'Phone:', 'give-payumoney' ); ?></strong><br>
+    <div class="column">
+        <p>
+            <strong><?php _e( 'Phone:', 'give-payumoney' ); ?></strong><br>
 			<?php echo $payumoney_response['phone']; ?>
-		</p>
-	</div>
+        </p>
+    </div>
 	<?php
 }
 
