@@ -170,7 +170,7 @@ class Give_Payumoney_API {
 			'udf1'             => $donation_id,
 			'udf2'             => $form_id,
 			'udf3'             => $form_url,
-			'udf5'            => 'givewp',
+			'udf5'             => 'givewp',
 			'service_provider' => 'payu_paisa',
 		);
 
@@ -268,7 +268,7 @@ class Give_Payumoney_API {
 	 */
 	public static function process_pending( $donation_id ) {
 		$donation = new Give_Payment( $donation_id );
-		$donation->add_note( sprintf( __( 'PayUmoney payment has "%s" status. Check <a href="%s" target="_blank">PayUmoney merchant dashboard</a> for more information or check the <a href="%s" target="_blank">payment gateway error logs</a> for additional details', 'give-payumoney' ), $_REQUEST['status'], "https://www.payumoney.com/merchant/dashboard/#/paymentCompleteDetails/{$_REQUEST['payuMoneyId']}", admin_url( 'edit.php?post_type=give_forms&page=give-tools&tab=logs&section=gateway_errors' ) ) );
+		$donation->add_note( sprintf( __( 'PayUmoney payment has "%s" status. Check the <a href="%s" target="_blank">PayUmoney merchant dashboard</a> for more information or check the <a href="%s" target="_blank">payment gateway error logs</a> for additional details', 'give-payumoney' ), $_REQUEST['status'], "https://www.payumoney.com/merchant/dashboard/#/paymentCompleteDetails/{$_REQUEST['payuMoneyId']}", admin_url( 'edit.php?post_type=give_forms&page=give-tools&tab=logs&section=gateway_errors' ) ) );
 
 		wp_clear_scheduled_hook( "give_payumoney_set_donation_{$donation_id}_abandoned", array( absint( $donation_id ) ) );
 
