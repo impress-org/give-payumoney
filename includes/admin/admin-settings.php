@@ -156,8 +156,8 @@ class Give_Payumoney_Gateway_Settings {
 					'id'          => 'payumoney_billing_details',
 					'type'        => 'radio_inline',
 					'options'     => array(
-						'enabled'  => esc_html__( 'Enabled', 'give' ),
-						'disabled' => esc_html__( 'Disabled', 'give' ),
+						'enabled'  => esc_html__( 'Enabled', 'give-payumoney' ),
+						'disabled' => esc_html__( 'Disabled', 'give-payumoney' ),
 					),
 					'default'     => 'disabled',
 					'description' => __( 'This option will enable the billing details section for PayUmoney which requires the donor\'s address to complete the donation. These fields are not required by PayUmoney to process the transaction, but you may have the need to collect the data.', 'give-payumoney' ),

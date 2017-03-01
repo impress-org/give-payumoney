@@ -1,0 +1,185 @@
+# Copyright (C) 2017 Give-PayUmoney
+# This file is distributed under the same license as the Give-PayUmoney package.
+msgid ""
+msgstr ""
+"Project-Id-Version: Give-PayUmoney\n"
+"Report-Msgid-Bugs-To: https://github.com/WordImpress/Give-PayUmoney/issues/new\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2017-MO-DA HO:MI+ZONE\n"
+"Language-Team: WordImpress <info@wordimpress.com>\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: includes/actions.php:38
+msgid "PayUmoney payment gateway disabled because INR is not set as donation currency."
+msgstr ""
+
+#: includes/actions.php:68
+msgid "Phone"
+msgstr ""
+
+#: includes/actions.php:71
+msgid "Enter only phone number."
+msgstr ""
+
+#: includes/admin/actions.php:58
+msgid "The PayUmoney payment gateway has been disabled automatically because <a href=\"%s\">merchant credentials</a> is not correct."
+msgstr ""
+
+#: includes/admin/actions.php:114
+msgid "Phone:"
+msgstr ""
+
+#: includes/admin/admin-settings.php:57, includes/functions.php:30
+msgid "PayUmoney"
+msgstr ""
+
+#: includes/admin/admin-settings.php:124
+msgid "Payment Method Label"
+msgstr ""
+
+#: includes/admin/admin-settings.php:128
+msgid "Payment method label will be appear on frontend."
+msgstr ""
+
+#: includes/admin/admin-settings.php:131
+msgid "Live Merchant Key"
+msgstr ""
+
+#: includes/admin/admin-settings.php:134
+msgid "Required LIVE Merchant ID provided by payumoney."
+msgstr ""
+
+#: includes/admin/admin-settings.php:137
+msgid "Live Merchant Salt"
+msgstr ""
+
+#: includes/admin/admin-settings.php:140
+msgid "Required LIVE Merchant Salt provided by payumoney."
+msgstr ""
+
+#: includes/admin/admin-settings.php:143
+msgid "Sandbox Merchant Key"
+msgstr ""
+
+#: includes/admin/admin-settings.php:146
+msgid "Required TEST Merchant Key provided by payumoney."
+msgstr ""
+
+#: includes/admin/admin-settings.php:149
+msgid "Sandbox Merchant Salt"
+msgstr ""
+
+#: includes/admin/admin-settings.php:152
+msgid "Required TEST Merchant Salt provided by payumoney."
+msgstr ""
+
+#: includes/admin/admin-settings.php:155
+msgid "Collect Billing Details"
+msgstr ""
+
+#: includes/admin/admin-settings.php:159, includes/admin/admin-settings.php:172
+msgid "Enabled"
+msgstr ""
+
+#: includes/admin/admin-settings.php:160, includes/admin/admin-settings.php:173
+msgid "Disabled"
+msgstr ""
+
+#: includes/admin/admin-settings.php:163
+msgid "This option will enable the billing details section for PayUmoney which requires the donor's address to complete the donation. These fields are not required by PayUmoney to process the transaction, but you may have the need to collect the data."
+msgstr ""
+
+#: includes/admin/admin-settings.php:166
+msgid "Show Phone Field"
+msgstr ""
+
+#: includes/admin/admin-settings.php:169
+msgid "Enable this setting if you want to show phone field on donation form (this field is necessary for PayUmoney)."
+msgstr ""
+
+#: includes/admin/plugin-activation.php:64
+msgid "PayUmoney Gateway"
+msgstr ""
+
+#: includes/admin/plugin-activation.php:87
+msgid "<strong>Activation Error:</strong> You must have the <a href=\"https://givewp.com/\" target=\"_blank\">Give</a> plugin installed and activated for the PayUmoney add-on to activate."
+msgstr ""
+
+#: includes/admin/plugin-activation.php:96
+msgid "<strong>Activation Error:</strong> You must have <a href=\"%1$s\" target=\"_blank\">Give</a> minimum version %2$s for the PayUmoney add-on to activate."
+msgstr ""
+
+#: includes/admin/plugin-activation.php:114
+msgid "Settings"
+msgstr ""
+
+#: includes/admin/plugin-activation.php:149
+msgid "Documentation"
+msgstr ""
+
+#: includes/admin/plugin-activation.php:159
+msgid "Add-ons"
+msgstr ""
+
+#: includes/filters.php:8
+msgid "Please enter valid phone number without zero"
+msgstr ""
+
+#: includes/lib/class-give-payumoney-api.php:171
+msgid "This is a donation payment for %s"
+msgstr ""
+
+#: includes/lib/class-give-payumoney-api.php:236
+msgid "PayUmoney payment completed (Transaction id: %s)"
+msgstr ""
+
+#: includes/lib/class-give-payumoney-api.php:258
+msgid "PayUmoney payment failed (Transaction id: %s)"
+msgstr ""
+
+#: includes/lib/class-give-payumoney-api.php:266, includes/lib/class-give-payumoney-api.php:294
+msgid "PayUmoney Error"
+msgstr ""
+
+#: includes/lib/class-give-payumoney-api.php:267, includes/lib/class-give-payumoney-api.php:295
+msgid "The PayUmoney Gateway returned an error while charging a donation."
+msgstr ""
+
+#: includes/lib/class-give-payumoney-api.php:267, includes/lib/class-give-payumoney-api.php:295
+msgid "Details: %s"
+msgstr ""
+
+#: includes/lib/class-give-payumoney-api.php:286
+msgid "PayUmoney payment has \"%s\" status. Check the <a href=\"%s\" target=\"_blank\">PayUmoney merchant dashboard</a> for more information or check the <a href=\"%s\" target=\"_blank\">payment gateway error logs</a> for additional details"
+msgstr ""
+
+#: includes/payment-processing.php:11
+msgid "Nonce verification has failed."
+msgstr ""
+
+#: includes/payment-processing.php:11
+msgid "Error"
+msgstr ""
+
+#: includes/payment-processing.php:41
+msgid "Payment Error"
+msgstr ""
+
+#: includes/payment-processing.php:44
+msgid "Payment creation failed before process PayUmoney gateway. Payment data: %s"
+msgstr ""
+
+#: templates/form.php:10
+msgid "Process Donation with PayUmoney payment gateways"
+msgstr ""
+
+#: templates/success.php:13
+msgid "Process PayUmoney API Response"
+msgstr ""

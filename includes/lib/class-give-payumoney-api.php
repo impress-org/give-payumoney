@@ -168,7 +168,7 @@ class Give_Payumoney_API {
 			'firstname'        => $donation_data['post_data']['give_first'],
 			'email'            => $donation_data['post_data']['give_email'],
 			'phone'            => ( isset( $donation_data['post_data']['give_payumoney_phone'] ) ? $donation_data['post_data']['give_payumoney_phone'] : '' ),
-			'productinfo'      => sprintf( __( 'This is a donation payment for %s', 'give' ), $donation_id ),
+			'productinfo'      => sprintf( __( 'This is a donation payment for %s', 'give-payumoney' ), $donation_id ),
 			'surl'             => $form_url . '?process_payu_payment=success',
 			'furl'             => $form_url . '?process_payu_payment=failure',
 			'lastname'         => $donation_data['post_data']['give_last'],
@@ -264,7 +264,7 @@ class Give_Payumoney_API {
 
 		give_record_gateway_error(
 			esc_html__( 'PayUmoney Error', 'give-payumoney' ),
-			esc_html__( 'The PayUmoney Gateway returned an error while charging a donation.', 'give-payumoney' ) . '<br><br>' . sprintf( esc_attr__( 'Details: %s', 'give-stripe' ), '<br>' . print_r( $_REQUEST, true ) ),
+			esc_html__( 'The PayUmoney Gateway returned an error while charging a donation.', 'give-payumoney' ) . '<br><br>' . sprintf( esc_attr__( 'Details: %s', 'give-payumoney' ), '<br>' . print_r( $_REQUEST, true ) ),
 			$donation_id
 		);
 

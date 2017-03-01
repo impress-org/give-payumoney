@@ -8,7 +8,7 @@
  */
 function give_process_payumoney_payment( $donation_data ) {
 	if ( ! wp_verify_nonce( $donation_data['gateway_nonce'], 'give-gateway' ) ) {
-		wp_die( esc_html__( 'Nonce verification has failed.', 'give-payumoney' ), esc_html__( 'Error', 'give' ), array(
+		wp_die( esc_html__( 'Nonce verification has failed.', 'give-payumoney' ), esc_html__( 'Error', 'give-payumoney' ), array(
 			'response' => 403,
 		) );
 	}
@@ -38,10 +38,10 @@ function give_process_payumoney_payment( $donation_data ) {
 	if ( ! $payment ) {
 		// Record the error.
 		give_record_gateway_error(
-			esc_html__( 'Payment Error', 'give' ),
+			esc_html__( 'Payment Error', 'give-payumoney' ),
 			/* translators: %s: payment data */
 			sprintf(
-				esc_html__( 'Payment creation failed before process PayUmoney gateway. Payment data: %s', 'give' ),
+				esc_html__( 'Payment creation failed before process PayUmoney gateway. Payment data: %s', 'give-payumoney' ),
 				json_encode( $donation_payment_data )
 			),
 			$payment

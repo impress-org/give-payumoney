@@ -156,7 +156,7 @@ function give_payumoney_plugin_row_meta( $plugin_meta, $plugin_file ) {
 					'utm_campaign' => 'admin',
 				), 'https://givewp.com/addons/' )
 			),
-			esc_html__( 'Add-ons', 'give-payu' )
+			esc_html__( 'Add-ons', 'give-payumoney' )
 		),
 	);
 

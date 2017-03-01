@@ -1,0 +1,7 @@
+# IDE
+.idea
+.svn
+
+# Gulp / Grunt
+/bower
+/node_modules

@@ -66,6 +66,8 @@ final class Give_Payumoney_Gateway {
 		define( 'GIVE_PAYU_URL', plugins_url( '/', __FILE__ ) );
 		define( 'GIVE_PAYU_DIR', plugin_dir_path( __FILE__ ) );
 
+		add_action( 'init', array( $this, 'load_textdomain' ) );
+
 		return self::$instance;
 	}
 
@@ -137,6 +139,42 @@ final class Give_Payumoney_Gateway {
 	public function is_plugin_dependency_satisfied() {
 		return ( -1 !== version_compare( GIVE_VERSION, GIVE_PAYU_MIN_GIVE_VER ) );
 	}
+
+
+	/**
+	 * Load the text domain.
+	 *
+	 * @access private
+	 * @since  1.0
+	 *
+	 * @return void
+	 */
+	public function load_textdomain() {
+
+		// Set filter for plugin's languages directory.
+		$give_payumoney_lang_dir = dirname( plugin_basename( __FILE__ ) ) . '/languages/';
+		$give_payumoney_lang_dir = apply_filters( 'give_payumoney_languages_directory', $give_payumoney_lang_dir );
+
+		// Traditional WordPress plugin locale filter
+		$locale = apply_filters( 'plugin_locale', get_locale(), 'give-payumoney' );
+		$mofile = sprintf( '%1$s-%2$s.mo', 'give-payumoney', $locale );
+
+		// Setup paths to current locale file
+		$mofile_local  = $give_payumoney_lang_dir . $mofile;
+		$mofile_global = WP_LANG_DIR . '/give-payumoney/' . $mofile;
+
+		if ( file_exists( $mofile_global ) ) {
+			// Look in global /wp-content/languages/give-paypal-pro folder
+			load_textdomain( 'give-payumoney', $mofile_global );
+		} elseif ( file_exists( $mofile_local ) ) {
+			// Look in local /wp-content/plugins/give-paypal-pro/languages/ folder
+			load_textdomain( 'give-payumoney', $mofile_local );
+		} else {
+			// Load the default language files
+			load_plugin_textdomain( 'give-payumoney', false, $give_payumoney_lang_dir );
+		}
+
+	}
 }
 
 /**
@@ -167,7 +205,7 @@ add_action( 'plugins_loaded', 'give_payu_plugin_init' );
  */
 function give_add_payumoney_licensing() {
 	if ( class_exists( 'Give_License' ) ) {
-		new Give_License( __FILE__, 'PayUmoney Gateway', GIVE_PAYUMONEY_VERSION, 'WordImpress' );
+		new Give_License( __FILE__, 'PayUmoney Gateway', GIVE_PAYU_VERSION, 'WordImpress' );
 	}
 }
 
