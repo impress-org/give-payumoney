@@ -168,22 +168,26 @@ class Give_Payumoney_API {
 			'firstname'        => $donation_data['post_data']['give_first'],
 			'email'            => $donation_data['post_data']['give_email'],
 			'phone'            => ( isset( $donation_data['post_data']['give_payumoney_phone'] ) ? $donation_data['post_data']['give_payumoney_phone'] : '' ),
-			'productinfo'      => "This donation is against payment {$donation_id}",
+			'productinfo'      => sprintf( __( 'This is a donation payment for %s', 'give' ), $donation_id ),
 			'surl'             => $form_url . '?process_payu_payment=success',
 			'furl'             => $form_url . '?process_payu_payment=failure',
 			'lastname'         => $donation_data['post_data']['give_last'],
-			'address1'         => $donation_data['post_data']['card_address'],
-			'address2'         => $donation_data['post_data']['card_address_2'],
-			'city'             => $donation_data['post_data']['card_city'],
-			'state'            => $donation_data['post_data']['card_state'],
-			'country'          => $donation_data['post_data']['billing_country'],
-			'zipcode'          => $donation_data['post_data']['card_zip'],
 			'udf1'             => $donation_id,
 			'udf2'             => $form_id,
 			'udf3'             => $form_url,
 			'udf5'             => 'givewp',
 			'service_provider' => 'payu_paisa',
 		);
+
+		// Pass address info if present.
+		if ( give_is_setting_enabled( give_get_option( 'payumoney_billing_details' ) ) ) {
+			$payupaisa_args['address1'] = $donation_data['post_data']['card_address'];
+			$payupaisa_args['address2'] = $donation_data['post_data']['card_address_2'];
+			$payupaisa_args['city']     = $donation_data['post_data']['card_city'];
+			$payupaisa_args['state']    = $donation_data['post_data']['card_state'];
+			$payupaisa_args['country']  = $donation_data['post_data']['billing_country'];
+			$payupaisa_args['zipcode']  = $donation_data['post_data']['card_zip'];
+		}
 
 		// Add hash to payment params.
 		$payupaisa_args['hash'] = self::get_hash( $payupaisa_args );
@@ -205,10 +209,10 @@ class Give_Payumoney_API {
 
 		ob_start();
 		?>
-		<form action="<?php echo self::$api_url; ?>" method="post" name="payuForm" style="display: none">
+        <form action="<?php echo self::$api_url; ?>" method="post" name="payuForm" style="display: none">
 			<?php echo implode( '', $payupaisa_args_array ); ?>
-			<input type="submit" value="Submit"/>
-		</form>
+            <input type="submit" value="Submit"/>
+        </form>
 		<?php
 		$form_html = ob_get_contents();
 		ob_get_clean();

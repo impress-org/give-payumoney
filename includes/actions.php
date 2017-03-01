@@ -97,9 +97,18 @@ add_action( 'give_donation_form_after_email', 'give_payu_add_phone_field' );
  * @since 1.0
  *
  * @param $form_id
+ *
+ * @return bool
  */
 function give_payumoney_cc_form_callback( $form_id ) {
-	give_default_cc_address_fields( $form_id );
+
+	if ( give_is_setting_enabled( give_get_option( 'payumoney_billing_details' ) ) ) {
+		give_default_cc_address_fields( $form_id );
+
+		return true;
+	}
+
+	return false;
 }
 
 add_action( 'give_payumoney_cc_form', 'give_payumoney_cc_form_callback' );
