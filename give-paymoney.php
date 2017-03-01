@@ -161,3 +161,14 @@ function give_payu_plugin_init() {
 }
 
 add_action( 'plugins_loaded', 'give_payu_plugin_init' );
+
+/**
+ * Give - PayUmoney Add-on Licensing
+ */
+function give_add_payumoney_licensing() {
+	if ( class_exists( 'Give_License' ) ) {
+		new Give_License( __FILE__, 'PayUmoney Gateway', GIVE_PAYUMONEY_VERSION, 'WordImpress' );
+	}
+}
+
+add_action( 'plugins_loaded', 'give_add_payumoney_licensing' );
