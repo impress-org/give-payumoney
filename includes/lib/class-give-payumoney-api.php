@@ -235,7 +235,7 @@ class Give_Payumoney_API {
 		$donation->update_status( 'completed' );
 		$donation->add_note( sprintf( __( 'PayUmoney payment completed (Transaction id: %s)', 'give-payumoney' ), $_REQUEST['txnid'] ) );
 
-		wp_clear_scheduled_hook( "give_payumoney_set_donation_{$donation_id}_abandoned", array( absint( $donation_id ) ) );
+		wp_clear_scheduled_hook( 'give_payumoney_set_donation_abandoned', array( absint( $donation_id ) ) );
 
 		give_set_payment_transaction_id( $donation_id, $_REQUEST['txnid'] );
 		update_post_meta( $donation_id, 'payumoney_donation_response', $_REQUEST );
@@ -257,7 +257,7 @@ class Give_Payumoney_API {
 		$donation->update_status( 'failed' );
 		$donation->add_note( sprintf( __( 'PayUmoney payment failed (Transaction id: %s)', 'give-payumoney' ), $_REQUEST['txnid'] ) );
 
-		wp_clear_scheduled_hook( "give_payumoney_set_donation_{$donation_id}_abandoned", array( absint( $donation_id ) ) );
+		wp_clear_scheduled_hook( 'give_payumoney_set_donation_abandoned', array( absint( $donation_id ) ) );
 
 		give_set_payment_transaction_id( $donation_id, $_REQUEST['txnid'] );
 		update_post_meta( $donation_id, 'payumoney_donation_response', $_REQUEST );
@@ -285,7 +285,7 @@ class Give_Payumoney_API {
 		$donation = new Give_Payment( $donation_id );
 		$donation->add_note( sprintf( __( 'PayUmoney payment has "%s" status. Check the <a href="%s" target="_blank">PayUmoney merchant dashboard</a> for more information or check the <a href="%s" target="_blank">payment gateway error logs</a> for additional details', 'give-payumoney' ), $_REQUEST['status'], "https://www.payumoney.com/merchant/dashboard/#/paymentCompleteDetails/{$_REQUEST['payuMoneyId']}", admin_url( 'edit.php?post_type=give_forms&page=give-tools&tab=logs&section=gateway_errors' ) ) );
 
-		wp_clear_scheduled_hook( "give_payumoney_set_donation_{$donation_id}_abandoned", array( absint( $donation_id ) ) );
+		wp_clear_scheduled_hook( 'give_payumoney_set_donation_abandoned', array( absint( $donation_id ) ) );
 
 		give_set_payment_transaction_id( $donation_id, $_REQUEST['txnid'] );
 		update_post_meta( $donation_id, 'payumoney_donation_response', $_REQUEST );
