@@ -164,10 +164,10 @@ final class Give_Payumoney_Gateway {
 		$mofile_global = WP_LANG_DIR . '/give-payumoney/' . $mofile;
 
 		if ( file_exists( $mofile_global ) ) {
-			// Look in global /wp-content/languages/give-paypal-pro folder
+			// Look in global /wp-content/languages/give-payumoney folder
 			load_textdomain( 'give-payumoney', $mofile_global );
 		} elseif ( file_exists( $mofile_local ) ) {
-			// Look in local /wp-content/plugins/give-paypal-pro/languages/ folder
+			// Look in local /wp-content/plugins/give-payumoney/languages/ folder
 			load_textdomain( 'give-payumoney', $mofile_local );
 		} else {
 			// Load the default language files
