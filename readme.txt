@@ -3,7 +3,7 @@ Contributors: wordimpress
 Tags: donations, donation, ecommerce, e-commerce, fundraising, fundraiser, payumoney, gateway
 Requires at least: 4.2
 Tested up to: 4.7.2
-Stable tag: 1.0
+Stable tag: 1.0.1
 License: GPLv3
 License URI: https://opensource.org/licenses/GPL-3.0
 
@@ -37,6 +37,9 @@ The manual installation method involves downloading our donation plugin and uplo
 Automatic updates should work like a charm; as always though, ensure you backup your site just in case.
 
 == Changelog ==
+
+= 1.0.1 =
+* Fix: The gateway rejects with "Invalid amount" for donations more than 3-digits in the donation amount.
 
 = 1.0 =
 * Initial plugin release. Yippee!
