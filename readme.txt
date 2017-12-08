@@ -1,8 +1,8 @@
 === Give - PayUmoney Gateway ===
 Contributors: wordimpress
 Tags: donations, donation, ecommerce, e-commerce, fundraising, fundraiser, payumoney, gateway
-Requires at least: 4.2
-Tested up to: 4.7.2
+Requires at least: 4.5
+Tested up to: 4.9
 Stable tag: 1.0.1
 License: GPLv3
 License URI: https://opensource.org/licenses/GPL-3.0
