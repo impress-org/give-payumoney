@@ -43,8 +43,8 @@ final class Give_Payumoney_Gateway {
 	 * @return Give_Payumoney_Gateway|static
 	 */
 	static function get_instance() {
-		if ( null === self::$instance ) {
-			self::$instance = new static();
+		if ( is_null( self::$instance ) ) {
+			self::$instance = new self();
 		}
 
 		return self::$instance;
