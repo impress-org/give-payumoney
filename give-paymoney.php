@@ -53,7 +53,7 @@ if ( ! class_exists( 'Give_Payumoney_Gateway' ) ) {
 		}
 
 		/**
-		 * Setup Give Mollie.
+		 * Setup Give PayUmoney.
 		 *
 		 * @since  1.0.0
 		 * @access private
@@ -180,7 +180,7 @@ if ( ! class_exists( 'Give_Payumoney_Gateway' ) ) {
 		}
 
 		/**
-		 * Implement Give Licensing for Give Mollie Add On.
+		 * Implement Give Licensing for Give PayUmoney Add On.
 		 *
 		 * @since  1.0.2
 		 * @access private
