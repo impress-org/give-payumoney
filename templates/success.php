@@ -74,7 +74,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 		 *      [card_type] => VISA
 		 * )
 		 */
-		if ( isset( $_REQUEST['txnid'] ) && isset( $_REQUEST['mihpayid'] ) ) {
+		$_post = give_clean( $_POST );
+
+		if (
+			isset( $_post['hash'] )
+			&& $_post['hash'] === Give_Payumoney_API::get_hash( $_post, 'after_transaction' )
+		) {
 			$donation_id = $_REQUEST['udf1'];
 
 			if ( ! empty( $donation_id ) ) {
