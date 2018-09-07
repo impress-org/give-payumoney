@@ -74,27 +74,31 @@ if ( ! defined( 'ABSPATH' ) ) {
 		 *      [card_type] => VISA
 		 * )
 		 */
-		if ( isset( $_REQUEST['txnid'] ) && isset( $_REQUEST['mihpayid'] ) ) {
+		$_post = give_clean( $_POST );
+
+		if (
+			isset( $_post['hash'] )
+			&& $_post['hash'] === Give_Payumoney_API::get_hash( $_post, 'after_transaction' )
+		) {
 			$donation_id = $_REQUEST['udf1'];
 
 			if ( ! empty( $donation_id ) ) {
 				try {
 					$donation = new Give_Payment( $donation_id );
-					$hash     = $_REQUEST['hash'];
 
-					if ( $donation->status !== 'completed' ) {
+					if ( $donation->ID && $donation->status !== 'completed' ) {
 						// Process each payment status.
 						switch ( esc_attr( $_REQUEST['status'] ) ) {
 							case 'success':
-								Give_Payumoney_API::process_success( $donation_id );
+								Give_Payumoney_API::process_success( $donation->ID );
 								break;
 
 							case 'failure':
-								Give_Payumoney_API::process_failure( $donation_id );
+								Give_Payumoney_API::process_failure( $donation->ID );
 								break;
 
 							default:
-								Give_Payumoney_API::process_pending( $donation_id );
+								Give_Payumoney_API::process_pending( $donation->ID );
 						}
 					}
 				} catch ( Exception $e ) {
