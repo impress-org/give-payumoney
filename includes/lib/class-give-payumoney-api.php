@@ -128,21 +128,40 @@ class Give_Payumoney_API {
 	 * @access public
 	 *
 	 * @param array  $payupaisa_args
+	 * @param string  $which Hash logic code
 	 *
 	 * @return string
 	 */
-	public static function get_hash( $payupaisa_args ) {
-		$hashSequence = 'key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10';
+	public static function get_hash( $payupaisa_args, $which ) {
+		$hashSequence = '';
 
-		$hashVarsSeq = explode( '|', $hashSequence );
-		$hash_string = '';
-
-		foreach ( $hashVarsSeq as $hash_var ) {
-			$hash_string .= isset( $payupaisa_args[ $hash_var ] ) ? $payupaisa_args[ $hash_var ] : '';
-			$hash_string .= '|';
+		if( ! in_array( $which, array( 'before_transaction', 'after_transaction' ) ) ) {
+			return '';
 		}
 
-		$hash_string .= self::$salt_key;
+		switch ( $which ) {
+			case 'before_transaction':
+				$hashSequence = 'key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT';
+				break;
+
+			case 'after_transaction':
+				$hashSequence = 'SALT|status||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amount|txnid|key';
+				break;
+		}
+
+		$hashVarsSeq = explode( '|', $hashSequence );
+		$hash_string = array();
+
+		// Add salt key.
+		if( ! array_key_exists( 'SALT', $payupaisa_args ) ) {
+			$payupaisa_args['SALT'] = self::$salt_key;
+		}
+
+		foreach ( $hashVarsSeq as $hash_var ) {
+			$hash_string[] = isset( $payupaisa_args[ $hash_var ] ) ? $payupaisa_args[ $hash_var ] : '';
+		}
+
+		$hash_string = implode( '|', $hash_string );
 
 		return strtolower( hash( 'sha512', $hash_string ) );
 	}
@@ -176,7 +195,6 @@ class Give_Payumoney_API {
 			'udf2'             => $form_id,
 			'udf3'             => $form_url,
 			'udf5'             => 'givewp',
-			'service_provider' => 'payu_paisa',
 		);
 
 		// Pass address info if present.
@@ -190,7 +208,7 @@ class Give_Payumoney_API {
 		}
 
 		// Add hash to payment params.
-		$payupaisa_args['hash'] = self::get_hash( $payupaisa_args );
+		$payupaisa_args['hash'] = self::get_hash( $payupaisa_args, 'before_transaction' );
 
 		/**
 		 * Filter the payumoney form arguments
