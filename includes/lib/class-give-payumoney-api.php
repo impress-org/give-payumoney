@@ -195,7 +195,6 @@ class Give_Payumoney_API {
 			'udf2'             => $form_id,
 			'udf3'             => $form_url,
 			'udf5'             => 'givewp',
-			'service_provider' => 'payu_paisa',
 		);
 
 		// Pass address info if present.
