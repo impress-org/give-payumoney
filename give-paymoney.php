@@ -3,9 +3,9 @@
  * Plugin Name: Give - PayUmoney
  * Plugin URI: https://github.com/WordImpress/Give-PayUmoney
  * Description: Process online donations via the PayUmoney payment gateway.
- * Author: WordImpress
- * Author URI: https://wordimpress.com
- * Version: 1.0.1
+ * Author: GiveWP
+ * Author URI: https://givewp.com
+ * Version: 1.0.2
  * Text Domain: give-payumoney
  * Domain Path: /languages
  * GitHub Plugin URI: https://github.com/WordImpress/payumoney
@@ -60,8 +60,8 @@ final class Give_Payumoney_Gateway {
 	 */
 	public function setup_constants() {
 		// Global Params.
-		define( 'GIVE_PAYU_VERSION', '1.0.1' );
-		define( 'GIVE_PAYU_MIN_GIVE_VER', '1.8.3' );
+		define( 'GIVE_PAYU_VERSION', '1.0.2' );
+		define( 'GIVE_PAYU_MIN_GIVE_VER', '2.2.0' );
 		define( 'GIVE_PAYU_BASENAME', plugin_basename( __FILE__ ) );
 		define( 'GIVE_PAYU_URL', plugins_url( '/', __FILE__ ) );
 		define( 'GIVE_PAYU_DIR', plugin_dir_path( __FILE__ ) );
@@ -111,8 +111,7 @@ final class Give_Payumoney_Gateway {
 	 */
 	public function setup_hooks() {
 		// Load scripts and style.
-		//add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
-
+		// add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 		return self::$instance;
 	}
 
@@ -126,7 +125,7 @@ final class Give_Payumoney_Gateway {
 	function enqueue_scripts( $hook ) {
 		if (
 			'gateways' === give_get_current_setting_tab()
-		     && 'payumoney' === give_get_current_setting_section()
+			 && 'payumoney' === give_get_current_setting_section()
 		) {
 			wp_register_script( 'payumoney-admin-settings', GIVE_PAYU_URL . 'assets/js/admin/admin-settings.js', array( 'jquery' ) );
 			wp_enqueue_script( 'payumoney-admin-settings' );
@@ -209,7 +208,7 @@ add_action( 'plugins_loaded', 'give_payu_plugin_init' );
  */
 function give_add_payumoney_licensing() {
 
-	if ( class_exists( 'Give_License' ) ) {
+	if ( class_exists( 'Give_License' ) && is_admin() ) {
 		new Give_License( __FILE__, 'PayUmoney Gateway', GIVE_PAYU_VERSION, 'WordImpress' );
 	}
 }

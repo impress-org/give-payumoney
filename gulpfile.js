@@ -23,7 +23,7 @@ gulp.task( 'pot', function() {
 			destFile: 'give-payumoney.pot',
 			bugReport: 'https://github.com/WordImpress/Give-PayUmoney/issues/new',
 			lastTranslator: '',
-			team: 'WordImpress <info@wordimpress.com>'
+			team: 'GiveWP <info@givewp.com>'
 		} ) )
 		.pipe( gulp.dest( 'languages' ) );
 } );

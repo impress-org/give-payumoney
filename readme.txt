@@ -1,9 +1,9 @@
 === Give - PayUmoney Gateway ===
-Contributors: wordimpress
+Contributors: givewp
 Tags: donations, donation, ecommerce, e-commerce, fundraising, fundraiser, payumoney, gateway
 Requires at least: 4.5
 Tested up to: 4.9
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 License: GPLv3
 License URI: https://opensource.org/licenses/GPL-3.0
 
@@ -37,6 +37,10 @@ The manual installation method involves downloading our donation plugin and uplo
 Automatic updates should work like a charm; as always though, ensure you backup your site just in case.
 
 == Changelog ==
+
+= 1.0.2: September 7th, 2018 =
+* Fix: Hardening the successful transaction check to prevent unauthorized tampering of donation amount total confirmation from the merchant.
+* Fix: The plugin will not deactivate when Give is not active but rather display a message prompting core plugin activation.
 
 = 1.0.1 =
 * Fix: The gateway rejects with "Invalid amount" for donations more than 3-digits in the donation amount.
