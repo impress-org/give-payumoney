@@ -73,7 +73,4 @@ gulp.task( 'readme', function() {
 
 /* Default Gulp task
  ------------------------------------- */
-gulp.task( 'default', function() {
-	// Run all the tasks!
-	gulp.start( 'textdomain', 'pot', 'readme' );
-} );
+gulp.task( 'default', gulp.series(['textdomain', 'pot', 'readme']));

@@ -16,6 +16,18 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#: give-paymoney.php:218
+msgid "<strong>Activation Error:</strong> You must have the <a href=\"%s\" target=\"_blank\">Give</a> plugin installed and activated for Give - PayUmoney to activate."
+msgstr ""
+
+#: give-paymoney.php:246
+msgid "<strong>Activation Error:</strong> You must have the <a href=\"%1$s\" target=\"_blank\">Give</a> core version %2$s for the Give - PayUmoney add-on to activate."
+msgstr ""
+
+#: give-paymoney.php:321
+msgid "PayUmoney Gateway"
+msgstr ""
+
 #: includes/actions.php:38
 msgid "PayUmoney payment gateway disabled because INR is not set as donation currency."
 msgstr ""
@@ -104,27 +116,15 @@ msgstr ""
 msgid "Enable this setting if you want to show phone field on donation form (this field is necessary for PayUmoney)."
 msgstr ""
 
-#: includes/admin/plugin-activation.php:64
-msgid "PayUmoney Gateway"
-msgstr ""
-
-#: includes/admin/plugin-activation.php:87
-msgid "<strong>Activation Error:</strong> You must have the <a href=\"https://givewp.com/\" target=\"_blank\">Give</a> plugin installed and activated for the PayUmoney add-on to activate."
-msgstr ""
-
-#: includes/admin/plugin-activation.php:96
-msgid "<strong>Activation Error:</strong> You must have <a href=\"%1$s\" target=\"_blank\">Give</a> minimum version %2$s for the PayUmoney add-on to activate."
-msgstr ""
-
-#: includes/admin/plugin-activation.php:114
+#: includes/admin/plugin-activation.php:20
 msgid "Settings"
 msgstr ""
 
-#: includes/admin/plugin-activation.php:149
+#: includes/admin/plugin-activation.php:55
 msgid "Documentation"
 msgstr ""
 
-#: includes/admin/plugin-activation.php:159
+#: includes/admin/plugin-activation.php:65
 msgid "Add-ons"
 msgstr ""
 
@@ -132,31 +132,31 @@ msgstr ""
 msgid "Please enter valid phone number without zero"
 msgstr ""
 
-#: includes/lib/class-give-payumoney-api.php:171
+#: includes/lib/class-give-payumoney-api.php:190
 msgid "This is a donation payment for %s"
 msgstr ""
 
-#: includes/lib/class-give-payumoney-api.php:236
+#: includes/lib/class-give-payumoney-api.php:254
 msgid "PayUmoney payment completed (Transaction id: %s)"
 msgstr ""
 
-#: includes/lib/class-give-payumoney-api.php:258
+#: includes/lib/class-give-payumoney-api.php:276
 msgid "PayUmoney payment failed (Transaction id: %s)"
 msgstr ""
 
-#: includes/lib/class-give-payumoney-api.php:266, includes/lib/class-give-payumoney-api.php:294
+#: includes/lib/class-give-payumoney-api.php:284, includes/lib/class-give-payumoney-api.php:312
 msgid "PayUmoney Error"
 msgstr ""
 
-#: includes/lib/class-give-payumoney-api.php:267, includes/lib/class-give-payumoney-api.php:295
+#: includes/lib/class-give-payumoney-api.php:285, includes/lib/class-give-payumoney-api.php:313
 msgid "The PayUmoney Gateway returned an error while charging a donation."
 msgstr ""
 
-#: includes/lib/class-give-payumoney-api.php:267, includes/lib/class-give-payumoney-api.php:295
+#: includes/lib/class-give-payumoney-api.php:285, includes/lib/class-give-payumoney-api.php:313
 msgid "Details: %s"
 msgstr ""
 
-#: includes/lib/class-give-payumoney-api.php:286
+#: includes/lib/class-give-payumoney-api.php:304
 msgid "PayUmoney payment has \"%s\" status. Check the <a href=\"%s\" target=\"_blank\">PayUmoney merchant dashboard</a> for more information or check the <a href=\"%s\" target=\"_blank\">payment gateway error logs</a> for additional details"
 msgstr ""
 
