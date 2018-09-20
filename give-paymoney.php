@@ -105,6 +105,8 @@ if ( ! class_exists( 'Give_Payumoney_Gateway' ) ) {
 			$this->licensing();
 			$this->activation_banner();
 
+			require_once GIVE_PAYU_DIR . 'includes/admin/plugin-activation.php';
+
 			// Load helper functions.
 			require_once GIVE_PAYU_DIR . 'includes/functions.php';
 
