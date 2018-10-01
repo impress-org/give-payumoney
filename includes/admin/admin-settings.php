@@ -121,13 +121,6 @@ class Give_Payumoney_Gateway_Settings {
 					'type' => 'title',
 				),
 				array(
-					'title'   => __( 'Payment Method Label', 'give-payumoney' ),
-					'id'      => 'payumoney_payment_method_label',
-					'type'    => 'text',
-					'default' => give_payu_get_payment_method_label(),
-					'desc'    => __( 'Payment method label will be appear on frontend.', 'give-payumoney' ),
-				),
-				array(
 					'title' => __( 'Live Merchant Key', 'give-payumoney' ),
 					'id'    => 'payumoney_live_merchant_key',
 					'type'  => 'text',
