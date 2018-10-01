@@ -114,7 +114,7 @@ class Give_Payumoney_Gateway_Settings {
 	public function add_settings( $settings ) {
 		$current_section = give_get_current_setting_section();
 
-		if ( $this->section_id == $current_section ) {
+		if ( $this->section_id === $current_section ) {
 			$settings = array(
 				array(
 					'id'   => 'give_payumoney_payments_setting',
