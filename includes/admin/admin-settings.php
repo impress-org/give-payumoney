@@ -114,18 +114,11 @@ class Give_Payumoney_Gateway_Settings {
 	public function add_settings( $settings ) {
 		$current_section = give_get_current_setting_section();
 
-		if ( $this->section_id == $current_section ) {
+		if ( $this->section_id === $current_section ) {
 			$settings = array(
 				array(
 					'id'   => 'give_payumoney_payments_setting',
 					'type' => 'title',
-				),
-				array(
-					'title'   => __( 'Payment Method Label', 'give-payumoney' ),
-					'id'      => 'payumoney_payment_method_label',
-					'type'    => 'text',
-					'default' => give_payu_get_payment_method_label(),
-					'desc'    => __( 'Payment method label will be appear on frontend.', 'give-payumoney' ),
 				),
 				array(
 					'title' => __( 'Live Merchant Key', 'give-payumoney' ),
