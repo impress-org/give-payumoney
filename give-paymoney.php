@@ -1,14 +1,14 @@
 <?php
 /**
  * Plugin Name: Give - PayUmoney
- * Plugin URI: https://github.com/WordImpress/Give-PayUmoney
+ * Plugin URI: https://github.com/impress-org/give-payumoney
  * Description: Process online donations via the PayUmoney payment gateway.
  * Author: GiveWP
  * Author URI: https://givewp.com
- * Version: 1.0.2
+ * Version: 1.0.3
  * Text Domain: give-payumoney
  * Domain Path: /languages
- * GitHub Plugin URI: https://github.com/WordImpress/payumoney
+ * GitHub Plugin URI: https://github.com/impress-org/give-payumoney
  */
 
 
@@ -79,8 +79,8 @@ if ( ! class_exists( 'Give_Payumoney_Gateway' ) ) {
 		 */
 		public function setup_constants() {
 			// Global Params.
-			define( 'GIVE_PAYU_VERSION', '1.0.2' );
-			define( 'GIVE_PAYU_MIN_GIVE_VER', '2.2.0' );
+			define( 'GIVE_PAYU_VERSION', '1.0.3' );
+			define( 'GIVE_PAYU_MIN_GIVE_VER', '2.3.0' );
 			define( 'GIVE_PAYU_BASENAME', plugin_basename( __FILE__ ) );
 			define( 'GIVE_PAYU_URL', plugins_url( '/', __FILE__ ) );
 			define( 'GIVE_PAYU_DIR', plugin_dir_path( __FILE__ ) );

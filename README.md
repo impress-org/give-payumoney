@@ -10,7 +10,7 @@ This plugin requires the Give plugin activated to function properly. When activa
 
 ### Minimum Requirements ###
 
-* WordPress 4.2 or greater
+* WordPress 4.5 or greater
 * PHP version 5.3 or greater
 * MySQL version 5.0 or greater
 * Some payment gateways require fsockopen support (for IPN access)
@@ -30,6 +30,11 @@ The manual installation method involves downloading our donation plugin and uplo
 Automatic updates should work like a charm; as always though, ensure you backup your site just in case.
 
 ## Changelog ##
+
+### 1.0.3: November 14th, 2018 ###
+* Tweak: Removed deprecated implementation of payment method label under gateway settings. Use the standard label configuration under Settings > Payment Gateways. Your previously used label will be brought over if customized.
+* Fix: Resolved several typos in notices and plugin settings.
+* Fix: Resolved 404 documentation link.
 
 ### 1.0.2: September 7th, 2018 ###
 * Fix: Hardening the successful transaction check to prevent unauthorized tampering of donation amount total confirmation from the merchant.

@@ -21,7 +21,7 @@ gulp.task( 'pot', function() {
 			package: 'Give-PayUmoney',
 			domain: 'give-payumoney', //textdomain
 			destFile: 'give-payumoney.pot',
-			bugReport: 'https://github.com/WordImpress/Give-PayUmoney/issues/new',
+			bugReport: 'https://github.com/impress-org/give-payumoney/issues/new',
 			lastTranslator: '',
 			team: 'GiveWP <info@givewp.com>'
 		} ) )

@@ -124,25 +124,25 @@ class Give_Payumoney_Gateway_Settings {
 					'title' => __( 'Live Merchant Key', 'give-payumoney' ),
 					'id'    => 'payumoney_live_merchant_key',
 					'type'  => 'text',
-					'desc'  => __( 'Required LIVE Merchant ID provided by payumoney.', 'give-payumoney' ),
+					'desc'  => __( 'The LIVE Merchant ID provided by payumoney. Required for testing donation payments in LIVE mode.', 'give-payumoney' ),
 				),
 				array(
 					'title' => __( 'Live Merchant Salt', 'give-payumoney' ),
 					'id'    => 'payumoney_live_salt_key',
 					'type'  => 'api_key',
-					'desc'  => __( 'Required LIVE Merchant Salt provided by payumoney.', 'give-payumoney' ),
+					'desc'  => __( 'The LIVE Merchant Salt provided by payumoney. Required for testing donation payments in LIVE mode.', 'give-payumoney' ),
 				),
 				array(
 					'title' => __( 'Sandbox Merchant Key', 'give-payumoney' ),
 					'id'    => 'payumoney_sandbox_merchant_key',
 					'type'  => 'text',
-					'desc'  => __( 'Required TEST Merchant Key provided by payumoney.', 'give-payumoney' ),
+					'desc'  => __( 'The TEST Merchant Key provided by payumoney. Required for testing donation payments in TEST mode.', 'give-payumoney' ),
 				),
 				array(
 					'title' => __( 'Sandbox Merchant Salt', 'give-payumoney' ),
 					'id'    => 'payumoney_sandbox_salt_key',
 					'type'  => 'api_key',
-					'desc'  => __( 'Required TEST Merchant Salt provided by payumoney.', 'give-payumoney' ),
+					'desc'  => __( 'The TEST Merchant Salt provided by payumoney. Required for testing donation payments in TEST mode.', 'give-payumoney' ),
 				),
 				array(
 					'title'       => __( 'Collect Billing Details', 'give-payumoney' ),
@@ -159,7 +159,7 @@ class Give_Payumoney_Gateway_Settings {
 					'title'   => __( 'Show Phone Field', 'give-payumoney' ),
 					'id'      => 'payumoney_phone_field',
 					'type'    => 'radio_inline',
-					'desc'    => __( 'Enable this setting if you want to show phone field on donation form (this field is necessary for PayUmoney).', 'give-payumoney' ),
+					'desc'    => __( 'This setting will display a phone number field on the donation form (NOTE: this field is necessary for PayUmoney).', 'give-payumoney' ),
 					'default' => 'enabled',
 					'options' => array(
 						'enabled'  => __( 'Enabled', 'give-payumoney' ),
