@@ -55,7 +55,7 @@ add_action( 'give-settings_saved', 'give_payumoney_check_dependancies' );
  * @return mixed
  */
 function give_payu_disable_by_agent_credentials( $messages ) {
-	$messages['give-payumoney-disable'] = sprintf( __( 'The PayUmoney payment gateway has been disabled automatically because <a href="%s">merchant credentials</a> is not correct.', 'give-payumoney' ), admin_url( 'edit.php?post_type=give_forms&page=give-settings&tab=gateways&section=payumoney' ) );
+	$messages['give-payumoney-disable'] = sprintf( __( 'The PayUmoney payment gateway has been disabled automatically because the <a href="%s">merchant credentials</a> are not correct.', 'give-payumoney' ), admin_url( 'edit.php?post_type=give_forms&page=give-settings&tab=gateways&section=payumoney' ) );
 
 	return $messages;
 }

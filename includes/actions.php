@@ -35,7 +35,7 @@ function give_payu_validate_settings( $options ) {
 		// Show payment gateway disable notice to admin.
 		Give_Admin_Settings::add_error(
 			'give_payu_no_inr_currency',
-			esc_html__( 'PayUmoney payment gateway disabled because INR is not set as donation currency.', 'give-payumoney' )
+			esc_html__( 'The PayUmoney payment gateway has been disabled because INR is not set as the donation currency.', 'give-payumoney' )
 		);
 
 		// Update options.
