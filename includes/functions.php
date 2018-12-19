@@ -73,10 +73,13 @@ function give_payu_get_merchant_credentials() {
  * @return string
  */
 function give_payu_get_api_url() {
-	$api_url = 'https://sandboxsecure.payu.in/_payment';
-
-	if ( ! give_payu_is_sandbox_mode_enabled() ) {
-		$api_url = 'https://secure.payu.in/_payment';
+	
+	// LIVE Endpoint for PayUMoney as well as PayUBiz.
+	$api_url = 'https://secure.payu.in/_payment';
+	
+	if ( give_payu_is_sandbox_mode_enabled() ) {
+		$endpoint =  ( 'payumoney' === give_payu_get_selected_account() ) ? 'sandboxsecure' : 'test';
+		$api_url  = "https://{$endpoint}.payu.in/_payment";
 	}
 
 	return $api_url;
