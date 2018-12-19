@@ -195,7 +195,6 @@ class Give_Payumoney_API {
 			'udf2'             => $form_id,
 			'udf3'             => $form_url,
 			'udf5'             => 'givewp',
-			'service_provider' => 'payu_paisa', // Don't remove this.
 		);
 
 		// Pass address info if present.
@@ -208,6 +207,11 @@ class Give_Payumoney_API {
 			$payupaisa_args['zipcode']  = $donation_data['post_data']['card_zip'];
 		}
 
+		// Add Service Provider only when the selected account is PayUMoney and not PayUBiz.
+		if ( 'payumoney' === give_payu_get_selected_account() ) {
+			$payupaisa_args['service_provider'] = 'payu_paisa';
+        }
+		
 		// Add hash to payment params.
 		$payupaisa_args['hash'] = self::get_hash( $payupaisa_args, 'before_transaction' );
 
