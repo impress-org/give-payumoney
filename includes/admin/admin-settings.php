@@ -121,6 +121,17 @@ class Give_Payumoney_Gateway_Settings {
 					'type' => 'title',
 				),
 				array(
+					'title'       => __( 'Account', 'give-payumoney' ),
+					'id'          => 'give_payumoney_account',
+					'type'        => 'radio_inline',
+					'options'     => array(
+						'payumoney' => esc_html__( 'PayUMoney', 'give-payumoney' ),
+						'payubiz'   => esc_html__( 'PayUBiz', 'give-payumoney' ),
+					),
+					'default'     => 'payumoney',
+					'description' => __( 'This option will help you select the account you\'re using for PayUIndia to accept donations.', 'give-payumoney' ),
+				),
+				array(
 					'title' => __( 'Live Merchant Key', 'give-payumoney' ),
 					'id'    => 'payumoney_live_merchant_key',
 					'type'  => 'text',
