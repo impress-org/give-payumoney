@@ -81,3 +81,14 @@ function give_payu_get_api_url() {
 
 	return $api_url;
 }
+
+/**
+ * This function will help you get the selected PayUIndia account by admin.
+ *
+ * @since 1.0.4
+ *
+ * @return string
+ */
+function give_payu_get_selected_account() {
+	return give_get_option( 'give_payumoney_account', 'payumoney' );
+}
