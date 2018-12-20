@@ -53,58 +53,74 @@ msgid "PayUmoney"
 msgstr ""
 
 #: includes/admin/admin-settings.php:124
+msgid "Account"
+msgstr ""
+
+#: includes/admin/admin-settings.php:128
+msgid "PayUMoney"
+msgstr ""
+
+#: includes/admin/admin-settings.php:129
+msgid "PayUBiz"
+msgstr ""
+
+#: includes/admin/admin-settings.php:132
+msgid "This option will help you select the account you're using for PayUIndia to accept donations."
+msgstr ""
+
+#: includes/admin/admin-settings.php:135
 msgid "Live Merchant Key"
 msgstr ""
 
-#: includes/admin/admin-settings.php:127
+#: includes/admin/admin-settings.php:138
 msgid "The LIVE Merchant ID provided by payumoney. Required for testing donation payments in LIVE mode."
 msgstr ""
 
-#: includes/admin/admin-settings.php:130
+#: includes/admin/admin-settings.php:141
 msgid "Live Merchant Salt"
 msgstr ""
 
-#: includes/admin/admin-settings.php:133
+#: includes/admin/admin-settings.php:144
 msgid "The LIVE Merchant Salt provided by payumoney. Required for testing donation payments in LIVE mode."
 msgstr ""
 
-#: includes/admin/admin-settings.php:136
+#: includes/admin/admin-settings.php:147
 msgid "Sandbox Merchant Key"
 msgstr ""
 
-#: includes/admin/admin-settings.php:139
+#: includes/admin/admin-settings.php:150
 msgid "The TEST Merchant Key provided by payumoney. Required for testing donation payments in TEST mode."
 msgstr ""
 
-#: includes/admin/admin-settings.php:142
+#: includes/admin/admin-settings.php:153
 msgid "Sandbox Merchant Salt"
 msgstr ""
 
-#: includes/admin/admin-settings.php:145
+#: includes/admin/admin-settings.php:156
 msgid "The TEST Merchant Salt provided by payumoney. Required for testing donation payments in TEST mode."
 msgstr ""
 
-#: includes/admin/admin-settings.php:148
+#: includes/admin/admin-settings.php:159
 msgid "Collect Billing Details"
 msgstr ""
 
-#: includes/admin/admin-settings.php:152, includes/admin/admin-settings.php:165
+#: includes/admin/admin-settings.php:163, includes/admin/admin-settings.php:176
 msgid "Enabled"
 msgstr ""
 
-#: includes/admin/admin-settings.php:153, includes/admin/admin-settings.php:166
+#: includes/admin/admin-settings.php:164, includes/admin/admin-settings.php:177
 msgid "Disabled"
 msgstr ""
 
-#: includes/admin/admin-settings.php:156
+#: includes/admin/admin-settings.php:167
 msgid "This option will enable the billing details section for PayUmoney which requires the donor's address to complete the donation. These fields are not required by PayUmoney to process the transaction, but you may have the need to collect the data."
 msgstr ""
 
-#: includes/admin/admin-settings.php:159
+#: includes/admin/admin-settings.php:170
 msgid "Show Phone Field"
 msgstr ""
 
-#: includes/admin/admin-settings.php:162
+#: includes/admin/admin-settings.php:173
 msgid "This setting will display a phone number field on the donation form (NOTE: this field is necessary for PayUmoney)."
 msgstr ""
 
@@ -128,27 +144,27 @@ msgstr ""
 msgid "This is a donation payment for %s"
 msgstr ""
 
-#: includes/lib/class-give-payumoney-api.php:254
+#: includes/lib/class-give-payumoney-api.php:259
 msgid "PayUmoney payment completed (Transaction id: %s)"
 msgstr ""
 
-#: includes/lib/class-give-payumoney-api.php:276
+#: includes/lib/class-give-payumoney-api.php:281
 msgid "PayUmoney payment failed (Transaction id: %s)"
 msgstr ""
 
-#: includes/lib/class-give-payumoney-api.php:284, includes/lib/class-give-payumoney-api.php:312
+#: includes/lib/class-give-payumoney-api.php:289, includes/lib/class-give-payumoney-api.php:317
 msgid "PayUmoney Error"
 msgstr ""
 
-#: includes/lib/class-give-payumoney-api.php:285, includes/lib/class-give-payumoney-api.php:313
+#: includes/lib/class-give-payumoney-api.php:290, includes/lib/class-give-payumoney-api.php:318
 msgid "The PayUmoney Gateway returned an error while charging a donation."
 msgstr ""
 
-#: includes/lib/class-give-payumoney-api.php:285, includes/lib/class-give-payumoney-api.php:313
+#: includes/lib/class-give-payumoney-api.php:290, includes/lib/class-give-payumoney-api.php:318
 msgid "Details: %s"
 msgstr ""
 
-#: includes/lib/class-give-payumoney-api.php:304
+#: includes/lib/class-give-payumoney-api.php:309
 msgid "PayUmoney payment has \"%s\" status. Check the <a href=\"%s\" target=\"_blank\">PayUmoney merchant dashboard</a> for more information or check the <a href=\"%s\" target=\"_blank\">payment gateway error logs</a> for additional details"
 msgstr ""
 
