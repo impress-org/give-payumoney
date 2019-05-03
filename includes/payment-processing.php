@@ -1,6 +1,6 @@
 <?php
 /**
- * Progress donation by iATS payment gateway
+ * Process donation via the PayUmoney payment gateway.
  *
  * @since 1.0
  *
