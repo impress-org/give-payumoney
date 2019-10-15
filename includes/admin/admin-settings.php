@@ -80,9 +80,9 @@ class Give_Payumoney_Gateway_Settings {
 	 */
 	public function add_gateways( $gateways ) {
 		$gateways[ $this->section_id ] = array(
-			'admin_label'    => __( 'PayUMoney - India', 'payumoney' ),
+			'admin_label'    => __( 'PayUMoney - India', 'give-payumoney' ),
 			'checkout_label' => give_payu_get_payment_method_label(),
-			'admin_tooltip'  => __( 'Only INR currency is supported by PayUMoney. Hence, the Indian PayUMoney accounts are only supported.', 'give-stripe' ),
+			'admin_tooltip'  => __( 'Only INR currency is supported by PayUMoney. Hence, the Indian PayUMoney accounts are only supported.', 'give-payumoney' ),
 		);
 
 		return $gateways;

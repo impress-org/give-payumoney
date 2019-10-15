@@ -31,6 +31,9 @@ Automatic updates should work like a charm; as always though, ensure you backup 
 
 ## Changelog ##
 
+### 1.0.5: October 15th, 2019 ###
+* Fix: Added notices and tooltips for clarity when attempting to use PayUMoney when INR is not configured as the main currency.
+
 ### 1.0.4: December 18th, 2018 ###
 * New: Added support for PayUbiz accounts.
 

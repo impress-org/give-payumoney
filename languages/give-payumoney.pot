@@ -1,4 +1,4 @@
-# Copyright (C) 2018 Give-PayUmoney
+# Copyright (C) 2019 Give-PayUmoney
 # This file is distributed under the same license as the Give-PayUmoney package.
 msgid ""
 msgstr ""
@@ -7,7 +7,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2018-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2019-MO-DA HO:MI+ZONE\n"
 "Language-Team: GiveWP <info@givewp.com>\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -28,23 +28,19 @@ msgstr ""
 msgid "PayUmoney Gateway"
 msgstr ""
 
-#: includes/actions.php:38
-msgid "The PayUmoney payment gateway has been disabled because INR is not set as the donation currency."
-msgstr ""
-
-#: includes/actions.php:68
+#: includes/actions.php:42
 msgid "Phone"
 msgstr ""
 
-#: includes/actions.php:71
+#: includes/actions.php:45
 msgid "Enter only phone number."
 msgstr ""
 
-#: includes/admin/actions.php:58
-msgid "The PayUmoney payment gateway has been disabled automatically because the <a href=\"%s\">merchant credentials</a> are not correct."
+#: includes/actions.php:116
+msgid "The currency must be set as \"Indian Rupee (₹)\" within Give's <a href=\"%s\">Currency Settings</a> in order to collect donations through the PayUMoney Payment Gateway."
 msgstr ""
 
-#: includes/admin/actions.php:114
+#: includes/admin/actions.php:57
 msgid "Phone:"
 msgstr ""
 
@@ -52,75 +48,83 @@ msgstr ""
 msgid "PayUmoney"
 msgstr ""
 
-#: includes/admin/admin-settings.php:124
+#: includes/admin/admin-settings.php:83
+msgid "PayUMoney - India"
+msgstr ""
+
+#: includes/admin/admin-settings.php:85
+msgid "Only INR currency is supported by PayUMoney. Hence, the Indian PayUMoney accounts are only supported."
+msgstr ""
+
+#: includes/admin/admin-settings.php:125
 msgid "Account"
 msgstr ""
 
-#: includes/admin/admin-settings.php:128
+#: includes/admin/admin-settings.php:129
 msgid "PayUMoney"
 msgstr ""
 
-#: includes/admin/admin-settings.php:129
+#: includes/admin/admin-settings.php:130
 msgid "PayUBiz"
 msgstr ""
 
-#: includes/admin/admin-settings.php:132
+#: includes/admin/admin-settings.php:133
 msgid "This option will help you select the account you're using for PayUIndia to accept donations."
 msgstr ""
 
-#: includes/admin/admin-settings.php:135
+#: includes/admin/admin-settings.php:136
 msgid "Live Merchant Key"
 msgstr ""
 
-#: includes/admin/admin-settings.php:138
+#: includes/admin/admin-settings.php:139
 msgid "The LIVE Merchant ID provided by payumoney. Required for testing donation payments in LIVE mode."
 msgstr ""
 
-#: includes/admin/admin-settings.php:141
+#: includes/admin/admin-settings.php:142
 msgid "Live Merchant Salt"
 msgstr ""
 
-#: includes/admin/admin-settings.php:144
+#: includes/admin/admin-settings.php:145
 msgid "The LIVE Merchant Salt provided by payumoney. Required for testing donation payments in LIVE mode."
 msgstr ""
 
-#: includes/admin/admin-settings.php:147
+#: includes/admin/admin-settings.php:148
 msgid "Sandbox Merchant Key"
 msgstr ""
 
-#: includes/admin/admin-settings.php:150
+#: includes/admin/admin-settings.php:151
 msgid "The TEST Merchant Key provided by payumoney. Required for testing donation payments in TEST mode."
 msgstr ""
 
-#: includes/admin/admin-settings.php:153
+#: includes/admin/admin-settings.php:154
 msgid "Sandbox Merchant Salt"
 msgstr ""
 
-#: includes/admin/admin-settings.php:156
+#: includes/admin/admin-settings.php:157
 msgid "The TEST Merchant Salt provided by payumoney. Required for testing donation payments in TEST mode."
 msgstr ""
 
-#: includes/admin/admin-settings.php:159
+#: includes/admin/admin-settings.php:160
 msgid "Collect Billing Details"
 msgstr ""
 
-#: includes/admin/admin-settings.php:163, includes/admin/admin-settings.php:176
+#: includes/admin/admin-settings.php:164, includes/admin/admin-settings.php:177
 msgid "Enabled"
 msgstr ""
 
-#: includes/admin/admin-settings.php:164, includes/admin/admin-settings.php:177
+#: includes/admin/admin-settings.php:165, includes/admin/admin-settings.php:178
 msgid "Disabled"
 msgstr ""
 
-#: includes/admin/admin-settings.php:167
+#: includes/admin/admin-settings.php:168
 msgid "This option will enable the billing details section for PayUmoney which requires the donor's address to complete the donation. These fields are not required by PayUmoney to process the transaction, but you may have the need to collect the data."
 msgstr ""
 
-#: includes/admin/admin-settings.php:170
+#: includes/admin/admin-settings.php:171
 msgid "Show Phone Field"
 msgstr ""
 
-#: includes/admin/admin-settings.php:173
+#: includes/admin/admin-settings.php:174
 msgid "This setting will display a phone number field on the donation form (NOTE: this field is necessary for PayUmoney)."
 msgstr ""
 
