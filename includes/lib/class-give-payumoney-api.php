@@ -183,7 +183,7 @@ class Give_Payumoney_API {
 		$payupaisa_args = array(
 			'key'              => self::$merchant_key,
 			'txnid'            => "{$donation_id}_" . date( 'ymds' ),
-			'amount'           => give_sanitize_amount( $donation_data['post_data']['give-amount'] ),
+			'amount'           => give_sanitize_amount( give_donation_amount( $donation_id ) ),
 			'firstname'        => $donation_data['post_data']['give_first'],
 			'email'            => $donation_data['post_data']['give_email'],
 			'phone'            => ( isset( $donation_data['post_data']['give_payumoney_phone'] ) ? $donation_data['post_data']['give_payumoney_phone'] : '' ),
