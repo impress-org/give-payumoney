@@ -38,6 +38,9 @@ Automatic updates should work like a charm; as always though, ensure you backup 
 
 == Changelog ==
 
+= 1.0.6: May 8th, 2020 =
+* Fix: Resolved an issue with compatibility with Fee Recovery not passing the fees properly to the gateway.
+
 = 1.0.5: October 15th, 2019 =
 * Fix: Added notices and tooltips for clarity when attempting to use PayUMoney when INR is not configured as the main currency.
 
