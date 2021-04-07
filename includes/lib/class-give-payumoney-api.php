@@ -1,5 +1,7 @@
 <?php
 
+use Give\Views\Form\Templates\Sequoia\Sequoia;
+
 class Give_Payumoney_API {
 	/**
 	 * Instance.
@@ -211,7 +213,7 @@ class Give_Payumoney_API {
 		if ( 'payumoney' === give_payu_get_selected_account() ) {
 			$payupaisa_args['service_provider'] = 'payu_paisa';
         }
-		
+
 		// Add hash to payment params.
 		$payupaisa_args['hash'] = self::get_hash( $payupaisa_args, 'before_transaction' );
 
@@ -231,8 +233,16 @@ class Give_Payumoney_API {
 		}
 
 		ob_start();
+
+		/* @var Sequoia $sequoiaTemplateClass */
+		$sequoiaTemplateClass = give( Sequoia::class );
 		?>
-        <form action="<?php echo self::$api_url; ?>" method="post" name="payuForm" style="display: none">
+		<form
+			action="<?php echo self::$api_url; ?>"
+			method="post"
+			name="payuForm" style="display: none"
+			<?php if( $sequoiaTemplateClass->getID() === Give\Helpers\Form\Template::getActiveID( $form_id ) ) { echo 'target="_parent"'; } ?>
+		>
 			<?php echo implode( '', $payupaisa_args_array ); ?>
             <input type="submit" value="Submit"/>
         </form>
