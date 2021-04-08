@@ -5,6 +5,7 @@ Requires at least: 4.5
 Tested up to: 5.0
 Stable tag: 1.0.6
 License: GPLv3
+Requires Give: 2.7.0
 License URI: https://opensource.org/licenses/GPL-3.0
 
 PayUmoney Gateway Add-on for Give.
