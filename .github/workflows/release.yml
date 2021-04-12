@@ -1,0 +1,96 @@
+name: Release to GiveWP.com
+
+on:
+  release:
+    types: [ released ]
+
+jobs:
+  build:
+    name:    Build Plugin Artifact
+    runs-on: ubuntu-latest
+
+    env:
+      PLUGIN_SLUG: ${{ github.event.repository.name }}
+      ZIP_FILE_NAME: ${{ github.event.repository.name }}.zip
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install composer dependencies
+        uses: php-actions/composer@v2
+        with:
+          dev: no
+
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '12'
+
+      - name: Install npm dependencies
+        run: |
+          npm ci
+          npm run build
+
+      - name: Generate plugin artifact
+        run: |
+          rsync -rc --exclude-from="$GITHUB_WORKSPACE/.distignore" "${GITHUB_WORKSPACE}/" "${PLUGIN_SLUG}/" --delete --delete-excluded
+          zip -r "${GITHUB_WORKSPACE}/release.zip" "$PLUGIN_SLUG"
+
+      - name: Deploy plugin zip to GiveWP.com
+        uses: burnett01/rsync-deployments@4.1
+        with:
+          switches: -avz --omit-dir-times --no-perms
+          path: release.zip
+          remote_path: ${{ secrets.GIVEWP_DOWNLOADS_PATH }}/$ZIP_FILE_NAME
+          remote_host: ${{ secrets.WEBSITE_DEPLOY_HOST }}
+          remote_user: ${{ secrets.WEBSITE_DEPLOY_USER }}
+          remote_key: ${{ secrets.WEBSITE_DEPLOY_PRIVATE_KEY }}
+
+      - name: Deploy plugin readme to GiveWP.com
+        uses: burnett01/rsync-deployments@4.1
+        with:
+          switches: -avz --omit-dir-times --no-perms
+          path: readme.txt
+          remote_path: ${{ secrets.GIVEWP_DOWNLOADS_PATH }}/${{ github.event.repository.name }}/
+          remote_host: ${{ secrets.WEBSITE_DEPLOY_HOST }}
+          remote_user: ${{ secrets.WEBSITE_DEPLOY_USER }}
+          remote_key: ${{ secrets.WEBSITE_DEPLOY_PRIVATE_KEY }}
+
+      - name: Update release version on website
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.WEBSITE_DEPLOY_HOST }}
+          username: ${{ secrets.WEBSITE_DEPLOY_USER }}
+          key: ${{ secrets.WEBSITE_DEPLOY_PRIVATE_KEY }}
+          script: |
+            cd ${{ secrets.GIVEWP_DOWNLOADS_PATH }}
+            wp post meta update ${{ secrets.EDD_PRODUCT_ID }} _edd_sl_version ${{ github.event.release.tag_name }}
+
+      - name: Clear plugin zip from Sucuri cache
+        uses: impress-org/clear-sucuri-cache-action@master
+        with:
+          api_key: ${{ secrets.SUCURI_API_KEY }}
+          api_secret: ${{ secrets.SUCURI_API_SECRET }}
+          file: ${{ secrets.GIVEWP_DOWNLOADS_URI }}/$ZIP_FILE_NAME
+
+      - name: Clear plugin readme.txt from Sucuri cache
+        uses: impress-org/clear-sucuri-cache-action@master
+        with:
+          api_key: ${{ secrets.SUCURI_API_KEY }}
+          api_secret: ${{ secrets.SUCURI_API_SECRET }}
+          file: ${{ secrets.GIVEWP_DOWNLOADS_URI }}/${{ github.event.repository.name }}/readme.txt
+
+      - name: Upload release asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: ${{ github.workspace }}/release.zip
+          asset_name: ${{ github.event.repository.name }}.zip
+          asset_content_type: application/zip
+
+      - name: Slack Notification
+        uses: someimportantcompany/github-actions-slack-message@v1
+        with:
+          webhook-url: ${{ secrets.SLACK_ANNOUNCEMENT_WEBHOOK }}
+          text: "*${{ github.event.repository.name }} ${{ github.event.release.name }} has just been released! 🎉* \n\n Here's what's new: \n\n ${{ github.event.release.body }} \n\n <${{ github.event.release.html_url }}|Link to Release>"

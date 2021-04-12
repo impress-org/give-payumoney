@@ -11,5 +11,8 @@
   },
   "dependencies": {
     "natives": "^1.1.4"
+  },
+  "scripts": {
+    "build": "npx gulp"
   }
 }
