@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+## 1.0.7 - 2021-04-12
+
 ### Fixed
 
 -   Donor able to donate with multi-step form template (#25)

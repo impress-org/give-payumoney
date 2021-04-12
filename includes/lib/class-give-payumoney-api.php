@@ -172,7 +172,7 @@ class Give_Payumoney_API {
 	 * Get form
 	 *
 	 * @since  1.0
-	 * @unreleased add logic to submit donation form to parent when donation form is in iframe.
+	 * @since 1.0.7 add logic to submit donation form to parent when donation form is in iframe.
 	 *
 	 * @access public
 	 * @return string

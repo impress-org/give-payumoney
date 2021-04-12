@@ -39,6 +39,9 @@ Automatic updates should work like a charm; as always though, ensure you backup 
 
 == Changelog ==
 
+= 1.0.7: April 12th, 2021 =
+* Fix: Gateway now works properly with the Multi-Step Form Template
+
 = 1.0.6: May 8th, 2020 =
 * Fix: Resolved an issue with compatibility with Fee Recovery not passing the fees properly to the gateway.
 

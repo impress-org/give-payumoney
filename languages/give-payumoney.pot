@@ -1,4 +1,4 @@
-# Copyright (C) 2020 Give-PayUmoney
+# Copyright (C) 2021 Give-PayUmoney
 # This file is distributed under the same license as the Give-PayUmoney package.
 msgid ""
 msgstr ""
@@ -7,7 +7,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2020-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2021-MO-DA HO:MI+ZONE\n"
 "Language-Team: GiveWP <info@givewp.com>\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -144,31 +144,31 @@ msgstr ""
 msgid "Please enter valid phone number without zero"
 msgstr ""
 
-#: includes/lib/class-give-payumoney-api.php:190
+#: includes/lib/class-give-payumoney-api.php:194
 msgid "This is a donation payment for %s"
 msgstr ""
 
-#: includes/lib/class-give-payumoney-api.php:259
+#: includes/lib/class-give-payumoney-api.php:271
 msgid "PayUmoney payment completed (Transaction id: %s)"
 msgstr ""
 
-#: includes/lib/class-give-payumoney-api.php:281
+#: includes/lib/class-give-payumoney-api.php:293
 msgid "PayUmoney payment failed (Transaction id: %s)"
 msgstr ""
 
-#: includes/lib/class-give-payumoney-api.php:289, includes/lib/class-give-payumoney-api.php:317
+#: includes/lib/class-give-payumoney-api.php:301, includes/lib/class-give-payumoney-api.php:329
 msgid "PayUmoney Error"
 msgstr ""
 
-#: includes/lib/class-give-payumoney-api.php:290, includes/lib/class-give-payumoney-api.php:318
+#: includes/lib/class-give-payumoney-api.php:302, includes/lib/class-give-payumoney-api.php:330
 msgid "The PayUmoney Gateway returned an error while charging a donation."
 msgstr ""
 
-#: includes/lib/class-give-payumoney-api.php:290, includes/lib/class-give-payumoney-api.php:318
+#: includes/lib/class-give-payumoney-api.php:302, includes/lib/class-give-payumoney-api.php:330
 msgid "Details: %s"
 msgstr ""
 
-#: includes/lib/class-give-payumoney-api.php:309
+#: includes/lib/class-give-payumoney-api.php:321
 msgid "PayUmoney payment has \"%s\" status. Check the <a href=\"%s\" target=\"_blank\">PayUmoney merchant dashboard</a> for more information or check the <a href=\"%s\" target=\"_blank\">payment gateway error logs</a> for additional details"
 msgstr ""
 
