@@ -58,7 +58,7 @@ gulp.task( 'textdomain', function() {
 /* Convert WordPress readme file to readme.md
  ------------------------------------- */
 gulp.task( 'readme', function() {
-	gulp.src( [ 'readme.txt' ] )
+	return gulp.src( [ 'readme.txt' ] )
 		.pipe( readme( {
 			details: false,
 			screenshot_ext: [
