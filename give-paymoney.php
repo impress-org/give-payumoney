@@ -141,7 +141,7 @@ if ( ! class_exists( 'Give_Payumoney_Gateway' ) ) {
 				'gateways' === give_get_current_setting_tab()
 				&& 'payumoney' === give_get_current_setting_section()
 			) {
-				wp_register_script( 'payumoney-admin-settings', GIVE_PAYU_URL . 'assets/js/admin/admin-settings.js', array( 'jquery' ) );
+				wp_register_script( 'payumoney-admin-settings', GIVE_PAYU_URL . 'assets/dist/js/admin/admin-settings.js', array( 'jquery' ) );
 				wp_enqueue_script( 'payumoney-admin-settings' );
 			}
 		}
