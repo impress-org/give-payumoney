@@ -79,7 +79,7 @@ class Give_Payumoney_API {
 	 */
 	public function setup_hooks() {
 		add_filter( 'template_include', array( $this, 'show_payu_form_template' ) );
-		add_filter( 'template_include', array( $this, 'show_payu_payment_success_template' ) );
+		add_action( 'template_redirect', array( $this, 'show_payu_payment_success_template' ) );
 
 		return self::$instance;
 	}
