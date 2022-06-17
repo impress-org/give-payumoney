@@ -5,3 +5,6 @@
 # Gulp / Grunt
 /bower
 /node_modules
+
+## Assets
+/assets/dist
