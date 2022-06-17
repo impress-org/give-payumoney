@@ -73,6 +73,7 @@ class Give_Payumoney_API {
 	/**
 	 * Setup hooks.
 	 *
+     * @unreleased Handle payUmoney redirect on template_redirect action hook.
 	 * @since  1.0
 	 * @access public
 	 * @return mixed
@@ -105,22 +106,14 @@ class Give_Payumoney_API {
 	/**
 	 * Show success template
 	 *
+     * @unreleased Load file to handle payUmoney redirect.
 	 * @since  1.0
 	 * @access public
-	 *
-	 * @param $template
-	 *
-	 * @return string
 	 */
-	public function show_payu_payment_success_template( $template ) {
-		if (
-			isset( $_REQUEST['process_payu_payment'] )
-			&& in_array( $_REQUEST['process_payu_payment'], array( 'success', 'failure' ) )
-		) {
-			$template = GIVE_PAYU_DIR . 'templates/success.php';
+	public function show_payu_payment_success_template() {
+        if (isset( $_REQUEST['process_payu_payment'] ) && in_array( $_REQUEST['process_payu_payment'], array( 'success', 'failure' ) )) {
+            require_once GIVE_PAYU_DIR . 'templates/success.php';
 		}
-
-		return $template;
 	}
 
 	/**
