@@ -5,7 +5,9 @@
  * Description: Process online donations via the PayUmoney payment gateway.
  * Author: GiveWP
  * Author URI: https://givewp.com
- * Version: 1.0.7
+ * Version:             1.0.8
+ * Requires at least:   5.0
+ * Requires PHP:        7.0
  * Text Domain: give-payumoney
  * Domain Path: /languages
  * GitHub Plugin URI: https://github.com/impress-org/give-payumoney
@@ -79,7 +81,7 @@ if ( ! class_exists( 'Give_Payumoney_Gateway' ) ) {
 		 */
 		public function setup_constants() {
 			// Global Params.
-			define( 'GIVE_PAYU_VERSION', '1.0.7' );
+			define( 'GIVE_PAYU_VERSION', '1.0.8' );
 			define( 'GIVE_PAYU_MIN_GIVE_VER', '2.7.0' );
 			define( 'GIVE_PAYU_BASENAME', plugin_basename( __FILE__ ) );
 			define( 'GIVE_PAYU_URL', plugins_url( '/', __FILE__ ) );
@@ -128,22 +130,6 @@ if ( ! class_exists( 'Give_Payumoney_Gateway' ) ) {
 			}
 
 			return self::$instance;
-		}
-
-		/**
-		 * Load scripts.
-		 *
-		 * @since  1.0
-		 * @access public
-		 */
-		function enqueue_scripts( $hook ) {
-			if (
-				'gateways' === give_get_current_setting_tab()
-				&& 'payumoney' === give_get_current_setting_section()
-			) {
-				wp_register_script( 'payumoney-admin-settings', GIVE_PAYU_URL . 'assets/js/admin/admin-settings.js', array( 'jquery' ) );
-				wp_enqueue_script( 'payumoney-admin-settings' );
-			}
 		}
 
 		/**
