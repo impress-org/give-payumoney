@@ -73,7 +73,7 @@ class Give_Payumoney_API {
 	/**
 	 * Setup hooks.
 	 *
-     * @unreleased Handle payUmoney redirect on template_redirect action hook.
+     * @since 1.0.8 Handle payUmoney redirect on template_redirect action hook.
 	 * @since  1.0
 	 * @access public
 	 * @return mixed
@@ -106,7 +106,7 @@ class Give_Payumoney_API {
 	/**
 	 * Show success template
 	 *
-     * @unreleased Load file to handle payUmoney redirect.
+     * @since 1.0.8 Load file to handle payUmoney redirect.
 	 * @since  1.0
 	 * @access public
 	 */

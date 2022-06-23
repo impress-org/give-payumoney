@@ -1,9 +1,9 @@
 === Give - PayUmoney Gateway ===
 Contributors: givewp
 Tags: donations, donation, ecommerce, e-commerce, fundraising, fundraiser, payumoney, gateway
-Requires at least: 4.5
-Tested up to: 5.0
-Stable tag: 1.0.6
+Requires at least: 5.0
+Tested up to: 6.0
+Stable tag: 1.0.8
 License: GPLv3
 Requires Give: 2.7.0
 License URI: https://opensource.org/licenses/GPL-3.0
@@ -38,6 +38,9 @@ The manual installation method involves downloading our donation plugin and uplo
 Automatic updates should work like a charm; as always though, ensure you backup your site just in case.
 
 == Changelog ==
+
+= 1.0.8: June 23rd, 2022 =
+* Fix: Donations correctly redirect to the confirmation page once again
 
 = 1.0.7: April 12th, 2021 =
 * Fix: Gateway now works properly with the Multi-Step Form Template
