@@ -1,0 +1,13 @@
+name: Build Plugin Pre-Release
+
+on:
+    release:
+        types: [ prereleased ]
+
+jobs:
+    build:
+        uses: impress-org/givewp-github-actions/.github/workflows/pre-release.yml@master
+        with:
+            plugin_slug: give-payumoney
+            zip_name: give-payumoney
+            install_composer_packages: false
