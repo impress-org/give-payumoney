@@ -14,3 +14,4 @@ jobs:
         with:
             ref: ${{ github.event.inputs.ref }}
             plugin_slug: give-payumoney
+            install_composer_packages: false
