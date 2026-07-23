@@ -3,7 +3,7 @@ Contributors: givewp
 Tags: donations, donation, ecommerce, e-commerce, fundraising, fundraiser, payumoney, gateway
 Requires at least: 5.0
 Tested up to: 6.0
-Stable tag: 1.0.8
+Stable tag: 1.0.9
 License: GPLv3
 Requires Give: 2.7.0
 License URI: https://opensource.org/licenses/GPL-3.0
@@ -38,6 +38,9 @@ The manual installation method involves downloading our donation plugin and uplo
 Automatic updates should work like a charm; as always though, ensure you backup your site just in case.
 
 == Changelog ==
+
+= 1.0.9: July 22nd, 2026 =
+* Security: Hardened verification of the payment gateway's return callback to further protect against tampering.
 
 = 1.0.8: June 23rd, 2022 =
 * Fix: Donations correctly redirect to the confirmation page once again

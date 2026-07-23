@@ -147,10 +147,8 @@ class Give_Payumoney_API {
 		$hashVarsSeq = explode( '|', $hashSequence );
 		$hash_string = array();
 
-		// Add salt key.
-		if( ! array_key_exists( 'SALT', $payupaisa_args ) ) {
-			$payupaisa_args['SALT'] = self::$salt_key;
-		}
+		// Always use the server-side secret salt; never trust a client-supplied value.
+		$payupaisa_args['SALT'] = self::$salt_key;
 
 		foreach ( $hashVarsSeq as $hash_var ) {
 			$hash_string[] = isset( $payupaisa_args[ $hash_var ] ) ? $payupaisa_args[ $hash_var ] : '';
@@ -260,6 +258,23 @@ class Give_Payumoney_API {
 	 */
 	public static function process_success( $donation_id ) {
 		$donation = new Give_Payment( absint( $_POST['udf1'] ) );
+
+		// Confirm the reported amount matches the donation record before marking it paid.
+		$expected_amount = give_sanitize_amount( give_donation_amount( $donation->ID ) );
+		$reported_amount = give_sanitize_amount( give_clean( isset( $_POST['amount'] ) ? $_POST['amount'] : '' ) );
+
+		if ( abs( (float) $expected_amount - (float) $reported_amount ) > 0.01 ) {
+			give_record_gateway_error(
+				esc_html__( 'PayUmoney Error', 'give-payumoney' ),
+				esc_html__( 'The PayUmoney Gateway reported a payment amount that does not match the donation record.', 'give-payumoney' ),
+				$donation_id
+			);
+
+			self::process_failure( $donation_id );
+
+			return;
+		}
+
 		$donation->update_status( 'completed' );
 		$donation->add_note( sprintf( __( 'PayUmoney payment completed (Transaction id: %s)', 'give-payumoney' ), $_REQUEST['txnid'] ) );
 

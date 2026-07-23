@@ -5,7 +5,7 @@
  * Description: Process online donations via the PayUmoney payment gateway.
  * Author: GiveWP
  * Author URI: https://givewp.com
- * Version:             1.0.8
+ * Version:             1.0.9
  * Requires at least:   5.0
  * Requires PHP:        7.0
  * Text Domain: give-payumoney
@@ -81,7 +81,7 @@ if ( ! class_exists( 'Give_Payumoney_Gateway' ) ) {
 		 */
 		public function setup_constants() {
 			// Global Params.
-			define( 'GIVE_PAYU_VERSION', '1.0.8' );
+			define( 'GIVE_PAYU_VERSION', '1.0.9' );
 			define( 'GIVE_PAYU_MIN_GIVE_VER', '2.7.0' );
 			define( 'GIVE_PAYU_BASENAME', plugin_basename( __FILE__ ) );
 			define( 'GIVE_PAYU_URL', plugins_url( '/', __FILE__ ) );

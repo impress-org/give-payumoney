@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+## 1.0.9 - 2026-07-22
+
+### Security
+
+-   Hardened verification of the payment gateway's return callback to further protect against tampering.
+
 ## 1.0.7 - 2021-04-12
 
 ### Fixed
