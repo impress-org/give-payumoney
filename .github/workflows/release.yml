@@ -11,5 +11,4 @@ jobs:
             plugin_slug: give-payumoney
             zip_name: give-payumoney
             install_composer_packages: false
-        secrets:
-            secrets: inherit
+        secrets: inherit
